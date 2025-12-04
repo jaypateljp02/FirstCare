@@ -54,11 +54,10 @@ export function Header() {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`transition-colors ${
-                  isActive(item.path)
+                className={`transition-colors ${isActive(item.path)
                     ? 'text-blue-600'
                     : 'text-gray-700 hover:text-blue-600'
-                }`}
+                  }`}
               >
                 {item.name}
               </Link>
@@ -136,11 +135,10 @@ export function Header() {
                   key={item.path}
                   to={item.path}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`py-2 transition-colors ${
-                    isActive(item.path)
-                      ? "text-blue-600 font-semibold"
-                      : "text-gray-700"
-                  }`}
+                  className={`py-2 transition-colors ${isActive(item.path)
+                    ? "text-blue-600 font-semibold"
+                    : "text-gray-700"
+                    }`}
                 >
                   {item.name}
                 </Link>
