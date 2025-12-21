@@ -72,7 +72,7 @@ export function AboutPage() {
   ];
 
   const benefits = [
-    "NABL Certified Laboratory",
+    "NABL Standard Reports",
     "State-of-the-art Equipment",
     "Free Home Sample Collection",
     "Same Day Reports Available",
@@ -125,9 +125,9 @@ export function AboutPage() {
                 development of our skilled team.
               </p>
               <p className="text-gray-600">
-                Today, we stand proud as a NABL certified
-                laboratory, recognized for our excellence in
-                diagnostic services and patient care.
+                Today, we stand proud as a trusted diagnostic
+                center, providing NABL standard reports through our
+                network of accredited partner laboratories.
               </p>
             </div>
           </div>

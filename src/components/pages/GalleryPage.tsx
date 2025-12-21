@@ -72,26 +72,26 @@ export function GalleryPage() {
         </div>
       </section>
 
-      {/* Certifications Banner */}
+      {/* Quality Standards Banner */}
       <section className="py-12 bg-white border-t">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h3 className="text-gray-900 mb-4">Certified & Accredited</h3>
+            <h3 className="text-gray-900 mb-4">Quality Standards</h3>
             <p className="text-gray-600 mb-6">
-              Our laboratory meets the highest standards of quality and safety
+              We maintain the highest standards of quality and safety in all our services
             </p>
             <div className="flex flex-wrap justify-center gap-8 items-center">
               <div className="px-8 py-4 bg-blue-50 rounded-lg border border-blue-100">
-                <div className="text-blue-900">NABL Certified</div>
-                <p className="text-sm text-gray-600">ISO 15189:2012</p>
+                <div className="text-blue-900">NABL Standard Reports</div>
+                <p className="text-sm text-gray-600">Through Partner Labs</p>
               </div>
               <div className="px-8 py-4 bg-blue-50 rounded-lg border border-blue-100">
-                <div className="text-blue-900">ISO Certified</div>
-                <p className="text-sm text-gray-600">Quality Management</p>
+                <div className="text-blue-900">Modern Equipment</div>
+                <p className="text-sm text-gray-600">State-of-the-Art Technology</p>
               </div>
               <div className="px-8 py-4 bg-blue-50 rounded-lg border border-blue-100">
-                <div className="text-blue-900">CAP Accredited</div>
-                <p className="text-sm text-gray-600">Excellence in Pathology</p>
+                <div className="text-blue-900">Expert Pathologists</div>
+                <p className="text-sm text-gray-600">Experienced Professionals</p>
               </div>
             </div>
           </div>

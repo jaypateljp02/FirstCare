@@ -33,7 +33,7 @@ export function FAQPage() {
     {
       question: 'Are your reports accurate and reliable?',
       answer:
-        'Yes, we are NABL certified and maintain the highest standards of quality control. Our laboratory uses state-of-the-art equipment and follows strict protocols. All tests are supervised by experienced pathologists to ensure accuracy.',
+        'Yes, we provide NABL standard reports through our network of accredited partner laboratories. Our facility uses state-of-the-art equipment and follows strict protocols. All tests are supervised by experienced pathologists to ensure accuracy.',
     },
     {
       question: 'What are your payment options?',
