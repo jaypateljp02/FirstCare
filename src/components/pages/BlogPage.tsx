@@ -1,63 +1,10 @@
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { useData } from '../../context/DataContext';
 
 export function BlogPage() {
-  const blogPosts = [
-    {
-      image: 'https://images.unsplash.com/photo-1631557675489-a923dfbda67d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZWRpY2FsJTIwbGFib3JhdG9yeSUyMHNjaWVudGlzdHxlbnwxfHx8fDE3NjQ0MTI1ODV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      title: 'Importance of Complete Blood Count (CBC) Test',
-      excerpt:
-        'Learn why CBC is one of the most common blood tests and what it reveals about your health. Understand the significance of RBC, WBC, and platelet counts.',
-      date: 'November 25, 2025',
-      readTime: '5 min read',
-      category: 'Health Education',
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1738778151587-032287ae9f90?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZWRpY2FsJTIwbGFib3JhdG9yeSUyMG1pY3Jvc2NvcGV8ZW58MXx8fHwxNzY0NDg0OTk5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      title: 'Signs of Vitamin D Deficiency You Should Not Ignore',
-      excerpt:
-        'Vitamin D deficiency is common in urban populations. Discover the warning signs, risk factors, and how a simple blood test can help you maintain optimal levels.',
-      date: 'November 20, 2025',
-      readTime: '6 min read',
-      category: 'Preventive Care',
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1758206523826-a65d4cf070aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYXRob2xvZ3klMjBsYWIlMjBlcXVpcG1lbnR8ZW58MXx8fHwxNzY0NTA1OTkxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      title: 'How to Prepare for Fasting Blood Tests',
-      excerpt:
-        'Proper preparation is key to accurate test results. Learn the dos and don\'ts before fasting blood tests including what you can drink and medication guidelines.',
-      date: 'November 15, 2025',
-      readTime: '4 min read',
-      category: 'Test Preparation',
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1576670158706-8d5b044b61da?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoZWFsdGhjYXJlJTIwcHJvZmVzc2lvbmFsJTIwbGFifGVufDF8fHx8MTc2NDUwNzYxOHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      title: 'Understanding Your Thyroid Function Test Results',
-      excerpt:
-        'Thyroid disorders affect millions. Decode your T3, T4, and TSH values and understand what they mean for your metabolism, energy levels, and overall health.',
-      date: 'November 10, 2025',
-      readTime: '7 min read',
-      category: 'Health Education',
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1758101512269-660feabf64fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYWJvcmF0b3J5JTIwdGVzdGluZyUyMHJvb218ZW58MXx8fHwxNzY0NTA3NjE5fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      title: 'Diabetes Management: Essential Tests You Need',
-      excerpt:
-        'Regular monitoring is crucial for diabetes management. Learn about HbA1c, fasting sugar, and post-prandial tests and how often you should get tested.',
-      date: 'November 5, 2025',
-      readTime: '6 min read',
-      category: 'Chronic Disease',
-    },
-    {
-      image: 'https://images.unsplash.com/photo-1762625570087-6d98fca29531?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZWRpY2FsJTIwY2xpbmljJTIwcmVjZXB0aW9ufGVufDF8fHx8MTc2NDM5NjUxMHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-      title: 'Annual Health Checkup: Why It Matters',
-      excerpt:
-        'Prevention is better than cure. Discover why an annual full body checkup is essential for early detection of health issues and maintaining optimal wellness.',
-      date: 'October 30, 2025',
-      readTime: '5 min read',
-      category: 'Preventive Care',
-    },
-  ];
+  const { blogPosts } = useData();
 
   return (
     <div>
@@ -75,9 +22,9 @@ export function BlogPage() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post, index) => (
+            {(blogPosts || []).map((post) => (
               <article
-                key={index}
+                key={post.id}
                 className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow group"
               >
                 <div className="aspect-[16/10] overflow-hidden bg-gray-100">
@@ -105,10 +52,13 @@ export function BlogPage() {
                       <span>{post.readTime}</span>
                     </div>
                   </div>
-                  <button className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors">
+                  <Link
+                    to={`/blog/${post.id}`}
+                    className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors w-fit"
+                  >
                     Read More
                     <ArrowRight className="w-4 h-4" />
-                  </button>
+                  </Link>
                 </div>
               </article>
             ))}

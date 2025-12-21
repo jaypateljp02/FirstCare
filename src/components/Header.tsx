@@ -16,18 +16,18 @@ export function Header() {
 
   const navItems = [
     { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
     { name: "Services", path: "/services" },
-    { name: "Gallery", path: "/gallery" },
+    { name: "Offer", path: "/offers" },
     { name: "Contact", path: "/contact" },
+    { name: "Gallery", path: "/gallery" },
   ];
 
   const moreNavItems = [
+    { name: "About", path: "/about" },
     { name: "Blog", path: "/blog" },
     { name: "Certifications", path: "/certifications" },
     { name: "FAQ", path: "/faq" },
     { name: "Home Sample Collection", path: "/home-collection" },
-    { name: "Offers", path: "/offers" },
     { name: "Testimonials", path: "/testimonials" },
   ];
 
@@ -55,8 +55,8 @@ export function Header() {
                 key={item.path}
                 to={item.path}
                 className={`transition-colors ${isActive(item.path)
-                    ? 'text-blue-600'
-                    : 'text-gray-700 hover:text-blue-600'
+                  ? 'text-blue-600'
+                  : 'text-gray-700 hover:text-blue-600'
                   }`}
               >
                 {item.name}

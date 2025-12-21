@@ -12,7 +12,7 @@ export function Footer() {
             <div className="flex items-center gap-3 mb-4">
               <img src={logo} alt="First Care Logo" className="h-10 brightness-0 invert" />
               <div>
-                <div className="text-white font-semibold">First Care Lab</div>
+                <div className="text-white font-semibold">Pathology Laboratory</div>
               </div>
             </div>
             <p className="text-sm text-gray-400">

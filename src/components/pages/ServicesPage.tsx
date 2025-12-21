@@ -1,98 +1,25 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Search, Clock, Droplet, Activity, Heart, FileText, TestTube, FlaskConical, Pill, FileCheck, FolderOpen, ChevronDown, ChevronUp, Grid3x3 } from 'lucide-react';
+import { useData } from '../../context/DataContext';
+
+// Icon mapping
+const iconComponents: Record<string, any> = {
+  Droplet,
+  Activity,
+  Heart,
+  FileText,
+  TestTube,
+  FlaskConical,
+  Pill,
+  FileCheck,
+};
 
 export function ServicesPage() {
+  const { services, serviceCategories } = useData();
   const [searchQuery, setSearchQuery] = useState('');
   // Default to grid (all tests) view
   const [viewMode, setViewMode] = useState<'folder' | 'grid'>('grid');
   const [openCategories, setOpenCategories] = useState<Set<string>>(new Set());
-
-  const services = [
-    {
-      icon: Droplet,
-      title: 'Complete Blood Count (CBC)',
-      description: 'Comprehensive analysis of blood cells including RBC, WBC, and platelets',
-      reportTime: 'Same Day',
-      category: 'Blood Tests',
-    },
-    {
-      icon: Activity,
-      title: 'Thyroid Profile (T3, T4, TSH)',
-      description: 'Complete thyroid function evaluation including all hormones',
-      reportTime: '24 Hours',
-      category: 'Hormone Tests',
-    },
-    {
-      icon: Heart,
-      title: 'Diabetes Panel (HbA1c, Fasting & PP)',
-      description: 'Comprehensive diabetes screening and monitoring package',
-      reportTime: 'Same Day',
-      category: 'Diabetes Tests',
-    },
-    {
-      icon: Activity,
-      title: 'Lipid Profile',
-      description: 'Complete cholesterol and triglycerides analysis',
-      reportTime: 'Same Day',
-      category: 'Blood Tests',
-    },
-    {
-      icon: FileText,
-      title: 'Liver Function Test (LFT)',
-      description: 'Complete liver enzyme and function assessment',
-      reportTime: '24 Hours',
-      category: 'Organ Function',
-    },
-    {
-      icon: FileCheck,
-      title: 'Kidney Function Test (KFT)',
-      description: 'Comprehensive kidney function evaluation',
-      reportTime: '24 Hours',
-      category: 'Organ Function',
-    },
-    {
-      icon: Pill,
-      title: 'Vitamin D Test',
-      description: 'Vitamin D3 (25-OH) level measurement',
-      reportTime: '48 Hours',
-      category: 'Vitamin Tests',
-    },
-    {
-      icon: Pill,
-      title: 'Vitamin B12 Test',
-      description: 'Serum B12 level measurement',
-      reportTime: '48 Hours',
-      category: 'Vitamin Tests',
-    },
-    {
-      icon: FlaskConical,
-      title: 'Urine Routine & Microscopy',
-      description: 'Complete urine analysis and microscopic examination',
-      reportTime: 'Same Day',
-      category: 'Urine Tests',
-    },
-    {
-      icon: TestTube,
-      title: 'Full Body Checkup',
-      description: 'Comprehensive health screening with 60+ parameters',
-      reportTime: '48 Hours',
-      category: 'Health Packages',
-    },
-    {
-      icon: Heart,
-      title: 'Cardiac Risk Assessment',
-      description: 'Complete heart health evaluation package',
-      reportTime: '24 Hours',
-      category: 'Health Packages',
-    },
-    {
-      icon: FileText,
-      title: 'Dengue Test (NS1, IgG, IgM)',
-      description: 'Complete dengue fever screening panel',
-      reportTime: '4-6 Hours',
-      category: 'Infection Tests',
-    },
-  ];
 
   const filteredServices = services.filter(
     (service) =>
@@ -120,9 +47,6 @@ export function ServicesPage() {
         filteredServices.map((service) => service.category)
       );
       setOpenCategories(categoriesWithResults);
-    } else if (!searchQuery) {
-      // Reset to empty when search is cleared (optional - you can keep them open)
-      // setOpenCategories(new Set());
     }
   }, [searchQuery, filteredServices]);
 
@@ -138,16 +62,13 @@ export function ServicesPage() {
     setOpenCategories(newOpen);
   };
 
-  // Category icons mapping
-  const categoryIcons: Record<string, any> = {
-    'Blood Tests': Droplet,
-    'Hormone Tests': Activity,
-    'Diabetes Tests': Heart,
-    'Organ Function': FileCheck,
-    'Vitamin Tests': Pill,
-    'Urine Tests': FlaskConical,
-    'Health Packages': TestTube,
-    'Infection Tests': FileText,
+  // Get category icon from serviceCategories
+  const getCategoryIcon = (categoryName: string) => {
+    const category = serviceCategories.find(c => c.name === categoryName);
+    if (category && iconComponents[category.iconName]) {
+      return iconComponents[category.iconName];
+    }
+    return FolderOpen;
   };
 
   return (
@@ -182,11 +103,10 @@ export function ServicesPage() {
             {/* All Tests (Grid) */}
             <button
               onClick={() => setViewMode('grid')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
-                viewMode === 'grid'
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${viewMode === 'grid'
                   ? 'bg-blue-600 text-white'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
+                }`}
             >
               <Grid3x3 className="w-4 h-4" />
               <span>All Tests</span>
@@ -194,11 +114,10 @@ export function ServicesPage() {
             {/* By Category (Folder) */}
             <button
               onClick={() => setViewMode('folder')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
-                viewMode === 'folder'
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${viewMode === 'folder'
                   ? 'bg-blue-600 text-white'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
+                }`}
             >
               <FolderOpen className="w-4 h-4" />
               <span>By Category</span>
@@ -219,7 +138,7 @@ export function ServicesPage() {
                 </div>
               ) : (
                 categories.map((category) => {
-                  const CategoryIcon = categoryIcons[category] || FolderOpen;
+                  const CategoryIcon = getCategoryIcon(category);
                   const isOpen = openCategories.has(category);
                   const categoryServices = servicesByCategory[category];
 
@@ -255,28 +174,31 @@ export function ServicesPage() {
                       {isOpen && (
                         <div className="border-t border-gray-200 bg-gray-50">
                           <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                            {categoryServices.map((service, index) => (
-                              <div
-                                key={index}
-                                className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow"
-                              >
-                                <div className="flex items-start gap-3">
-                                  <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                                    <service.icon className="w-5 h-5 text-white" />
-                                  </div>
-                                  <div className="flex-1 min-w-0">
-                                    <h4 className="text-gray-900 font-medium mb-1 text-sm">{service.title}</h4>
-                                    <p className="text-xs text-gray-600 mb-2">{service.description}</p>
-                                    <div className="flex items-center gap-2 text-xs">
-                                      <div className="flex items-center gap-1 text-blue-600">
-                                        <Clock className="w-3 h-3" />
-                                        <span>{service.reportTime}</span>
+                            {categoryServices.map((service) => {
+                              const ServiceIcon = iconComponents[service.iconName] || Droplet;
+                              return (
+                                <div
+                                  key={service.id}
+                                  className="bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow"
+                                >
+                                  <div className="flex items-start gap-3">
+                                    <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                                      <ServiceIcon className="w-5 h-5 text-white" />
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                      <h4 className="text-gray-900 font-medium mb-1 text-sm">{service.title}</h4>
+                                      <p className="text-xs text-gray-600 mb-2">{service.description}</p>
+                                      <div className="flex items-center gap-2 text-xs">
+                                        <div className="flex items-center gap-1 text-blue-600">
+                                          <Clock className="w-3 h-3" />
+                                          <span>{service.reportTime}</span>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
-                              </div>
-                            ))}
+                              );
+                            })}
                           </div>
                         </div>
                       )}
@@ -288,31 +210,34 @@ export function ServicesPage() {
           ) : (
             /* Grid View */
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredServices.map((service, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-shadow"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <service.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-gray-900 mb-2">{service.title}</h3>
-                      <p className="text-sm text-gray-600 mb-3">{service.description}</p>
-                      <div className="flex items-center gap-4 text-sm">
-                        <div className="flex items-center gap-1 text-blue-600">
-                          <Clock className="w-4 h-4" />
-                          <span>{service.reportTime}</span>
-                        </div>
-                        <div className="px-2 py-1 bg-blue-50 text-blue-700 rounded text-xs">
-                          {service.category}
+              {filteredServices.map((service) => {
+                const ServiceIcon = iconComponents[service.iconName] || Droplet;
+                return (
+                  <div
+                    key={service.id}
+                    className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-shadow"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <ServiceIcon className="w-6 h-6 text-white" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-gray-900 mb-2">{service.title}</h3>
+                        <p className="text-sm text-gray-600 mb-3">{service.description}</p>
+                        <div className="flex items-center gap-4 text-sm">
+                          <div className="flex items-center gap-1 text-blue-600">
+                            <Clock className="w-4 h-4" />
+                            <span>{service.reportTime}</span>
+                          </div>
+                          <div className="px-2 py-1 bg-blue-50 text-blue-700 rounded text-xs">
+                            {service.category}
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
               {filteredServices.length === 0 && (
                 <div className="col-span-full text-center py-12">
                   <p className="text-gray-500">No services found matching your search.</p>

@@ -1,98 +1,14 @@
 import { Tag, Percent, Gift, MessageCircle } from 'lucide-react';
+import { useData } from '../../context/DataContext';
+
+const iconMap = {
+  Tag: Tag,
+  Percent: Percent,
+  Gift: Gift
+};
 
 export function OffersPage() {
-  const offers = [
-    {
-      icon: Tag,
-      title: 'Full Body Checkup Package',
-      originalPrice: '₹2,499',
-      offerPrice: '₹999',
-      discount: '60% OFF',
-      description: 'Comprehensive health screening with 60+ parameters including CBC, Lipid Profile, Liver Function, Kidney Function, Thyroid, Diabetes Panel, and more.',
-      features: [
-        '60+ Parameters Covered',
-        'Free Home Sample Collection',
-        'Reports in 24-48 Hours',
-        'Valid till December 31, 2025',
-      ],
-      color: 'blue',
-    },
-    {
-      icon: Percent,
-      title: 'Diabetes Care Panel',
-      originalPrice: '₹1,299',
-      offerPrice: '₹699',
-      discount: '46% OFF',
-      description: 'Complete diabetes screening and monitoring package with HbA1c, Fasting Sugar, PP Sugar, and related tests.',
-      features: [
-        'HbA1c + Fasting + PP Sugar',
-        'Lipid Profile Included',
-        'Same Day Reports',
-        'Valid till December 31, 2025',
-      ],
-      color: 'green',
-    },
-    {
-      icon: Gift,
-      title: 'Senior Citizen Special',
-      originalPrice: 'Regular Price',
-      offerPrice: '20% OFF',
-      discount: 'SPECIAL DISCOUNT',
-      description: 'Exclusive discount for senior citizens (60+ years) on all individual tests and health packages.',
-      features: [
-        'Applicable on All Tests',
-        'Priority Home Collection',
-        'Free Doctor Consultation',
-        'Lifetime Benefit',
-      ],
-      color: 'purple',
-    },
-    {
-      icon: Tag,
-      title: 'Thyroid Complete Panel',
-      originalPrice: '₹899',
-      offerPrice: '₹499',
-      discount: '44% OFF',
-      description: 'Comprehensive thyroid evaluation including T3, T4, and TSH tests to assess thyroid function.',
-      features: [
-        'T3, T4, TSH Included',
-        'Free Home Collection',
-        'Reports in 24 Hours',
-        'Valid till December 31, 2025',
-      ],
-      color: 'blue',
-    },
-    {
-      icon: Percent,
-      title: 'Women\'s Health Package',
-      originalPrice: '₹2,999',
-      offerPrice: '₹1,499',
-      discount: '50% OFF',
-      description: 'Specially designed for women\'s health with hormonal tests, vitamin levels, and comprehensive screening.',
-      features: [
-        '50+ Parameters',
-        'Hormonal Assessment',
-        'Vitamin D & B12',
-        'Valid till December 31, 2025',
-      ],
-      color: 'pink',
-    },
-    {
-      icon: Gift,
-      title: 'Family Health Package',
-      originalPrice: '₹5,999',
-      offerPrice: '₹3,499',
-      discount: '42% OFF',
-      description: 'Perfect for family wellness! Package includes tests for 4 family members with essential health parameters.',
-      features: [
-        'For 4 Family Members',
-        'Essential Health Tests',
-        'Free Home Collection',
-        'Valid till December 31, 2025',
-      ],
-      color: 'orange',
-    },
-  ];
+  const { offers } = useData();
 
   const getColorClasses = (color: string) => {
     const colors: Record<string, { bg: string; text: string; badge: string }> = {
@@ -123,6 +39,7 @@ export function OffersPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {offers.map((offer, index) => {
               const colorClasses = getColorClasses(offer.color);
+              const Icon = iconMap[offer.iconName] || Tag;
               return (
                 <div
                   key={index}
@@ -132,7 +49,7 @@ export function OffersPage() {
                     {/* Icon and Discount Badge */}
                     <div className="flex items-start justify-between mb-4">
                       <div className={`w-12 h-12 ${colorClasses.badge} rounded-lg flex items-center justify-center`}>
-                        <offer.icon className="w-6 h-6 text-white" />
+                        <Icon className="w-6 h-6 text-white" />
                       </div>
                       <span className={`px-3 py-1 ${colorClasses.badge} text-white rounded-full text-sm`}>
                         {offer.discount}
