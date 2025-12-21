@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useData, BlogPost } from '../../context/DataContext';
-import { Plus, Trash2, Edit2, X } from 'lucide-react';
+import { Plus, Trash2, Edit2, X, Loader2 } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 
 export function ManageBlog() {
-    const { blogPosts, addBlogPost, updateBlogPost, deleteBlogPost } = useData();
+    const { blogPosts, addBlogPost, updateBlogPost, deleteBlogPost, loading } = useData();
     const [isAdding, setIsAdding] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
+    const [isSaving, setIsSaving] = useState(false);
+    const [deletingId, setDeletingId] = useState<string | null>(null);
 
     const emptyForm: Omit<BlogPost, 'id'> = {
         image: '',
@@ -20,16 +22,39 @@ export function ManageBlog() {
 
     const [formData, setFormData] = useState<Omit<BlogPost, 'id'>>(emptyForm);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (editingId) {
-            updateBlogPost(editingId, formData);
-            setEditingId(null);
-        } else {
-            addBlogPost(formData);
+        setIsSaving(true);
+
+        try {
+            if (editingId) {
+                await updateBlogPost(editingId, formData);
+                setEditingId(null);
+            } else {
+                await addBlogPost(formData);
+            }
+            setIsAdding(false);
+            setFormData(emptyForm);
+        } catch (error) {
+            console.error('Error saving blog post:', error);
+            alert('Failed to save blog post. Please try again.');
+        } finally {
+            setIsSaving(false);
         }
-        setIsAdding(false);
-        setFormData(emptyForm);
+    };
+
+    const handleDelete = async (id: string) => {
+        if (!confirm('Are you sure you want to delete this blog post?')) return;
+
+        setDeletingId(id);
+        try {
+            await deleteBlogPost(id);
+        } catch (error) {
+            console.error('Error deleting blog post:', error);
+            alert('Failed to delete blog post.');
+        } finally {
+            setDeletingId(null);
+        }
     };
 
     const handleEdit = (post: BlogPost) => {
@@ -51,6 +76,15 @@ export function ManageBlog() {
         setEditingId(null);
         setFormData(emptyForm);
     };
+
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center h-64">
+                <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+                <span className="ml-2 text-gray-600">Loading blog posts...</span>
+            </div>
+        );
+    }
 
     return (
         <div>
@@ -167,8 +201,10 @@ export function ManageBlog() {
                             </button>
                             <button
                                 type="submit"
-                                className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700"
+                                disabled={isSaving}
+                                className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50 flex items-center gap-2"
                             >
+                                {isSaving && <Loader2 className="w-4 h-4 animate-spin" />}
                                 {editingId ? 'Update Post' : 'Publish Post'}
                             </button>
                         </div>
@@ -203,10 +239,15 @@ export function ManageBlog() {
                                 Edit
                             </button>
                             <button
-                                onClick={() => deleteBlogPost(post.id)}
-                                className="flex items-center gap-1 px-3 py-1.5 text-sm bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors"
+                                onClick={() => handleDelete(post.id)}
+                                disabled={deletingId === post.id}
+                                className="flex items-center gap-1 px-3 py-1.5 text-sm bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors disabled:opacity-50"
                             >
-                                <Trash2 className="w-4 h-4" />
+                                {deletingId === post.id ? (
+                                    <Loader2 className="w-4 h-4 animate-spin" />
+                                ) : (
+                                    <Trash2 className="w-4 h-4" />
+                                )}
                                 Delete
                             </button>
                         </div>

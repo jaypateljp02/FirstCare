@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useData, GalleryImage } from '../../context/DataContext';
-import { Plus, Trash2, Edit2, X } from 'lucide-react';
+import { Plus, Trash2, Edit2, X, Loader2 } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 
 export function ManageGallery() {
-    const { galleryImages, addGalleryImage, updateGalleryImage, deleteGalleryImage } = useData();
+    const { galleryImages, addGalleryImage, updateGalleryImage, deleteGalleryImage, loading } = useData();
     const [isAdding, setIsAdding] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
+    const [isSaving, setIsSaving] = useState(false);
+    const [deletingId, setDeletingId] = useState<string | null>(null);
 
     const emptyForm: Omit<GalleryImage, 'id'> = {
         src: '',
@@ -16,16 +18,39 @@ export function ManageGallery() {
 
     const [formData, setFormData] = useState<Omit<GalleryImage, 'id'>>(emptyForm);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (editingId) {
-            updateGalleryImage(editingId, formData);
-            setEditingId(null);
-        } else {
-            addGalleryImage(formData);
+        setIsSaving(true);
+
+        try {
+            if (editingId) {
+                await updateGalleryImage(editingId, formData);
+                setEditingId(null);
+            } else {
+                await addGalleryImage(formData);
+            }
+            setIsAdding(false);
+            setFormData(emptyForm);
+        } catch (error) {
+            console.error('Error saving gallery image:', error);
+            alert('Failed to save image. Please try again.');
+        } finally {
+            setIsSaving(false);
         }
-        setIsAdding(false);
-        setFormData(emptyForm);
+    };
+
+    const handleDelete = async (id: string) => {
+        if (!confirm('Are you sure you want to delete this image?')) return;
+
+        setDeletingId(id);
+        try {
+            await deleteGalleryImage(id);
+        } catch (error) {
+            console.error('Error deleting image:', error);
+            alert('Failed to delete image.');
+        } finally {
+            setDeletingId(null);
+        }
     };
 
     const handleEdit = (image: GalleryImage) => {
@@ -43,6 +68,15 @@ export function ManageGallery() {
         setEditingId(null);
         setFormData(emptyForm);
     };
+
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center h-64">
+                <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+                <span className="ml-2 text-gray-600">Loading gallery...</span>
+            </div>
+        );
+    }
 
     return (
         <div>
@@ -117,8 +151,10 @@ export function ManageGallery() {
                             </button>
                             <button
                                 type="submit"
-                                className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700"
+                                disabled={isSaving}
+                                className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50 flex items-center gap-2"
                             >
+                                {isSaving && <Loader2 className="w-4 h-4 animate-spin" />}
                                 {editingId ? 'Update Image' : 'Add to Gallery'}
                             </button>
                         </div>
@@ -149,10 +185,15 @@ export function ManageGallery() {
                                 Edit
                             </button>
                             <button
-                                onClick={() => deleteGalleryImage(image.id)}
-                                className="flex items-center gap-1 px-3 py-1.5 text-sm bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors"
+                                onClick={() => handleDelete(image.id)}
+                                disabled={deletingId === image.id}
+                                className="flex items-center gap-1 px-3 py-1.5 text-sm bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-colors disabled:opacity-50"
                             >
-                                <Trash2 className="w-4 h-4" />
+                                {deletingId === image.id ? (
+                                    <Loader2 className="w-4 h-4 animate-spin" />
+                                ) : (
+                                    <Trash2 className="w-4 h-4" />
+                                )}
                                 Delete
                             </button>
                         </div>

@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { useData, Offer } from '../../context/DataContext';
-import { Plus, Trash2, Tag, Percent, Gift, Edit2, X } from 'lucide-react';
+import { Plus, Trash2, Tag, Percent, Gift, Edit2, X, Loader2 } from 'lucide-react';
 
 const icons = { Tag, Percent, Gift };
 
 export function ManageOffers() {
-    const { offers, addOffer, updateOffer, deleteOffer } = useData();
+    const { offers, addOffer, updateOffer, deleteOffer, loading } = useData();
     const [isAdding, setIsAdding] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
+    const [isSaving, setIsSaving] = useState(false);
+    const [deletingId, setDeletingId] = useState<string | null>(null);
 
     const emptyForm: Omit<Offer, 'id'> = {
         title: '',
@@ -23,23 +25,46 @@ export function ManageOffers() {
     const [formData, setFormData] = useState<Omit<Offer, 'id'>>(emptyForm);
     const [featuresInput, setFeaturesInput] = useState('');
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const offerData = {
-            ...formData,
-            features: featuresInput.split('\n').filter(f => f.trim() !== '')
-        };
+        setIsSaving(true);
 
-        if (editingId) {
-            updateOffer(editingId, offerData);
-            setEditingId(null);
-        } else {
-            addOffer(offerData);
+        try {
+            const offerData = {
+                ...formData,
+                features: featuresInput.split('\n').filter(f => f.trim() !== '')
+            };
+
+            if (editingId) {
+                await updateOffer(editingId, offerData);
+                setEditingId(null);
+            } else {
+                await addOffer(offerData);
+            }
+
+            setIsAdding(false);
+            setFormData(emptyForm);
+            setFeaturesInput('');
+        } catch (error) {
+            console.error('Error saving offer:', error);
+            alert('Failed to save offer. Please try again.');
+        } finally {
+            setIsSaving(false);
         }
+    };
 
-        setIsAdding(false);
-        setFormData(emptyForm);
-        setFeaturesInput('');
+    const handleDelete = async (id: string) => {
+        if (!confirm('Are you sure you want to delete this offer?')) return;
+
+        setDeletingId(id);
+        try {
+            await deleteOffer(id);
+        } catch (error) {
+            console.error('Error deleting offer:', error);
+            alert('Failed to delete offer.');
+        } finally {
+            setDeletingId(null);
+        }
     };
 
     const handleEdit = (offer: Offer) => {
@@ -64,6 +89,15 @@ export function ManageOffers() {
         setFormData(emptyForm);
         setFeaturesInput('');
     };
+
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center h-64">
+                <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+                <span className="ml-2 text-gray-600">Loading offers...</span>
+            </div>
+        );
+    }
 
     return (
         <div>
@@ -197,8 +231,10 @@ export function ManageOffers() {
                             </button>
                             <button
                                 type="submit"
-                                className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700"
+                                disabled={isSaving}
+                                className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50 flex items-center gap-2"
                             >
+                                {isSaving && <Loader2 className="w-4 h-4 animate-spin" />}
                                 {editingId ? 'Update Offer' : 'Save Offer'}
                             </button>
                         </div>
@@ -229,11 +265,16 @@ export function ManageOffers() {
                                     <Edit2 className="w-5 h-5" />
                                 </button>
                                 <button
-                                    onClick={() => deleteOffer(offer.id)}
-                                    className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                                    onClick={() => handleDelete(offer.id)}
+                                    disabled={deletingId === offer.id}
+                                    className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-50"
                                     title="Delete Offer"
                                 >
-                                    <Trash2 className="w-5 h-5" />
+                                    {deletingId === offer.id ? (
+                                        <Loader2 className="w-5 h-5 animate-spin" />
+                                    ) : (
+                                        <Trash2 className="w-5 h-5" />
+                                    )}
                                 </button>
                             </div>
                         </div>

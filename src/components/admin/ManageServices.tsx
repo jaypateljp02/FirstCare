@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useData, Service, ServiceCategory } from '../../context/DataContext';
-import { Plus, Trash2, Edit2, X, Droplet, Activity, Heart, FileText, TestTube, FlaskConical, Pill, FileCheck, FolderOpen } from 'lucide-react';
+import { Plus, Trash2, Edit2, X, Droplet, Activity, Heart, FileText, TestTube, FlaskConical, Pill, FileCheck, FolderOpen, Loader2 } from 'lucide-react';
 
 const iconComponents = {
     Droplet,
@@ -24,7 +24,8 @@ export function ManageServices() {
         deleteService,
         addServiceCategory,
         updateServiceCategory,
-        deleteServiceCategory
+        deleteServiceCategory,
+        loading
     } = useData();
 
     const [activeTab, setActiveTab] = useState<'services' | 'categories'>('services');
@@ -32,6 +33,8 @@ export function ManageServices() {
     const [isAddingCategory, setIsAddingCategory] = useState(false);
     const [editingServiceId, setEditingServiceId] = useState<string | null>(null);
     const [editingCategoryId, setEditingCategoryId] = useState<string | null>(null);
+    const [isSaving, setIsSaving] = useState(false);
+    const [deletingId, setDeletingId] = useState<string | null>(null);
 
     // Service Form
     const emptyServiceForm: Omit<Service, 'id'> = {
@@ -51,16 +54,39 @@ export function ManageServices() {
     const [categoryForm, setCategoryForm] = useState<Omit<ServiceCategory, 'id'>>(emptyCategoryForm);
 
     // Service handlers
-    const handleServiceSubmit = (e: React.FormEvent) => {
+    const handleServiceSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (editingServiceId) {
-            updateService(editingServiceId, serviceForm);
-            setEditingServiceId(null);
-        } else {
-            addService(serviceForm);
+        setIsSaving(true);
+
+        try {
+            if (editingServiceId) {
+                await updateService(editingServiceId, serviceForm);
+                setEditingServiceId(null);
+            } else {
+                await addService(serviceForm);
+            }
+            setIsAddingService(false);
+            setServiceForm(emptyServiceForm);
+        } catch (error) {
+            console.error('Error saving service:', error);
+            alert('Failed to save service. Please try again.');
+        } finally {
+            setIsSaving(false);
         }
-        setIsAddingService(false);
-        setServiceForm(emptyServiceForm);
+    };
+
+    const handleDeleteService = async (id: string) => {
+        if (!confirm('Are you sure you want to delete this service?')) return;
+
+        setDeletingId(id);
+        try {
+            await deleteService(id);
+        } catch (error) {
+            console.error('Error deleting service:', error);
+            alert('Failed to delete service.');
+        } finally {
+            setDeletingId(null);
+        }
     };
 
     const handleEditService = (service: Service) => {
@@ -82,16 +108,39 @@ export function ManageServices() {
     };
 
     // Category handlers
-    const handleCategorySubmit = (e: React.FormEvent) => {
+    const handleCategorySubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (editingCategoryId) {
-            updateServiceCategory(editingCategoryId, categoryForm);
-            setEditingCategoryId(null);
-        } else {
-            addServiceCategory(categoryForm);
+        setIsSaving(true);
+
+        try {
+            if (editingCategoryId) {
+                await updateServiceCategory(editingCategoryId, categoryForm);
+                setEditingCategoryId(null);
+            } else {
+                await addServiceCategory(categoryForm);
+            }
+            setIsAddingCategory(false);
+            setCategoryForm(emptyCategoryForm);
+        } catch (error) {
+            console.error('Error saving category:', error);
+            alert('Failed to save category. Please try again.');
+        } finally {
+            setIsSaving(false);
         }
-        setIsAddingCategory(false);
-        setCategoryForm(emptyCategoryForm);
+    };
+
+    const handleDeleteCategory = async (id: string) => {
+        if (!confirm('Are you sure you want to delete this category?')) return;
+
+        setDeletingId(id);
+        try {
+            await deleteServiceCategory(id);
+        } catch (error) {
+            console.error('Error deleting category:', error);
+            alert('Failed to delete category.');
+        } finally {
+            setDeletingId(null);
+        }
     };
 
     const handleEditCategory = (category: ServiceCategory) => {
@@ -118,6 +167,15 @@ export function ManageServices() {
         servicesByCategory[service.category].push(service);
     });
 
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center h-64">
+                <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+                <span className="ml-2 text-gray-600">Loading services...</span>
+            </div>
+        );
+    }
+
     return (
         <div>
             <div className="flex items-center justify-between mb-8">
@@ -129,8 +187,8 @@ export function ManageServices() {
                 <button
                     onClick={() => setActiveTab('services')}
                     className={`px-4 py-2 rounded-lg transition-colors ${activeTab === 'services'
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                         }`}
                 >
                     Services ({services.length})
@@ -138,8 +196,8 @@ export function ManageServices() {
                 <button
                     onClick={() => setActiveTab('categories')}
                     className={`px-4 py-2 rounded-lg transition-colors ${activeTab === 'categories'
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                         }`}
                 >
                     Categories ({serviceCategories.length})
@@ -251,8 +309,10 @@ export function ManageServices() {
                                     </button>
                                     <button
                                         type="submit"
-                                        className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700"
+                                        disabled={isSaving}
+                                        className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50 flex items-center gap-2"
                                     >
+                                        {isSaving && <Loader2 className="w-4 h-4 animate-spin" />}
                                         {editingServiceId ? 'Update Service' : 'Add Service'}
                                     </button>
                                 </div>
@@ -299,11 +359,16 @@ export function ManageServices() {
                                                             <Edit2 className="w-4 h-4" />
                                                         </button>
                                                         <button
-                                                            onClick={() => deleteService(service.id)}
-                                                            className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                                                            onClick={() => handleDeleteService(service.id)}
+                                                            disabled={deletingId === service.id}
+                                                            className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-50"
                                                             title="Delete Service"
                                                         >
-                                                            <Trash2 className="w-4 h-4" />
+                                                            {deletingId === service.id ? (
+                                                                <Loader2 className="w-4 h-4 animate-spin" />
+                                                            ) : (
+                                                                <Trash2 className="w-4 h-4" />
+                                                            )}
                                                         </button>
                                                     </div>
                                                 </div>
@@ -385,8 +450,10 @@ export function ManageServices() {
                                     </button>
                                     <button
                                         type="submit"
-                                        className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700"
+                                        disabled={isSaving}
+                                        className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50 flex items-center gap-2"
                                     >
+                                        {isSaving && <Loader2 className="w-4 h-4 animate-spin" />}
                                         {editingCategoryId ? 'Update Category' : 'Add Category'}
                                     </button>
                                 </div>
@@ -420,12 +487,16 @@ export function ManageServices() {
                                             <Edit2 className="w-4 h-4" />
                                         </button>
                                         <button
-                                            onClick={() => deleteServiceCategory(category.id)}
-                                            className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                                            title="Delete Category"
-                                            disabled={servicesCount > 0}
+                                            onClick={() => handleDeleteCategory(category.id)}
+                                            disabled={deletingId === category.id || servicesCount > 0}
+                                            className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-50"
+                                            title={servicesCount > 0 ? "Cannot delete - has services" : "Delete Category"}
                                         >
-                                            <Trash2 className="w-4 h-4" />
+                                            {deletingId === category.id ? (
+                                                <Loader2 className="w-4 h-4 animate-spin" />
+                                            ) : (
+                                                <Trash2 className="w-4 h-4" />
+                                            )}
                                         </button>
                                     </div>
                                 </div>
