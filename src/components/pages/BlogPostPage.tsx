@@ -132,7 +132,29 @@ export function BlogPostPage() {
                         <p className="text-gray-500 italic">
                             Disclaimer: This content is for educational purposes only and does not constitute medical advice.
                         </p>
-                        <button className="flex items-center gap-2 text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-lg transition-colors">
+                        <button
+                            onClick={async () => {
+                                const shareData = {
+                                    title: post.title,
+                                    text: post.excerpt,
+                                    url: window.location.href,
+                                };
+
+                                try {
+                                    if (navigator.share) {
+                                        await navigator.share(shareData);
+                                    } else {
+                                        // Fallback: copy to clipboard
+                                        await navigator.clipboard.writeText(window.location.href);
+                                        alert('Link copied to clipboard!');
+                                    }
+                                } catch (err) {
+                                    // User cancelled or error
+                                    console.log('Share cancelled or failed:', err);
+                                }
+                            }}
+                            className="flex items-center gap-2 text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-lg transition-colors"
+                        >
                             <Share2 className="w-4 h-4" />
                             Share
                         </button>
