@@ -1,14 +1,18 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useData, BlogPost } from '../../context/DataContext';
-import { Plus, Trash2, Edit2, X, Loader2 } from 'lucide-react';
+import { Plus, Trash2, Edit2, X, Loader2, Upload, Link } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
+import { uploadImage } from '../../lib/supabase';
 
 export function ManageBlog() {
     const { blogPosts, addBlogPost, updateBlogPost, deleteBlogPost, loading } = useData();
     const [isAdding, setIsAdding] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
     const [isSaving, setIsSaving] = useState(false);
+    const [isUploading, setIsUploading] = useState(false);
     const [deletingId, setDeletingId] = useState<string | null>(null);
+    const [uploadMode, setUploadMode] = useState<'file' | 'url'>('file');
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     const emptyForm: Omit<BlogPost, 'id'> = {
         image: '',
@@ -21,25 +25,50 @@ export function ManageBlog() {
     };
 
     const [formData, setFormData] = useState<Omit<BlogPost, 'id'>>(emptyForm);
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
+    const [previewUrl, setPreviewUrl] = useState<string>('');
+
+    const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            setSelectedFile(file);
+            const url = URL.createObjectURL(file);
+            setPreviewUrl(url);
+        }
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSaving(true);
 
         try {
+            let imageUrl = formData.image;
+
+            // If file mode and file selected, upload it
+            if (uploadMode === 'file' && selectedFile) {
+                setIsUploading(true);
+                imageUrl = await uploadImage(selectedFile, 'blog');
+                setIsUploading(false);
+            }
+
+            const postData = { ...formData, image: imageUrl };
+
             if (editingId) {
-                await updateBlogPost(editingId, formData);
+                await updateBlogPost(editingId, postData);
                 setEditingId(null);
             } else {
-                await addBlogPost(formData);
+                await addBlogPost(postData);
             }
             setIsAdding(false);
             setFormData(emptyForm);
+            setSelectedFile(null);
+            setPreviewUrl('');
         } catch (error) {
             console.error('Error saving blog post:', error);
             alert('Failed to save blog post. Please try again.');
         } finally {
             setIsSaving(false);
+            setIsUploading(false);
         }
     };
 
@@ -69,12 +98,16 @@ export function ManageBlog() {
         });
         setEditingId(post.id);
         setIsAdding(true);
+        setUploadMode('url');
+        setPreviewUrl(post.image);
     };
 
     const handleCancel = () => {
         setIsAdding(false);
         setEditingId(null);
         setFormData(emptyForm);
+        setSelectedFile(null);
+        setPreviewUrl('');
     };
 
     if (loading) {
@@ -94,6 +127,9 @@ export function ManageBlog() {
                     onClick={() => {
                         setEditingId(null);
                         setFormData(emptyForm);
+                        setSelectedFile(null);
+                        setPreviewUrl('');
+                        setUploadMode('file');
                         setIsAdding(!isAdding);
                     }}
                     className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -111,18 +147,97 @@ export function ManageBlog() {
                             <X className="w-5 h-5" />
                         </button>
                     </div>
+
+                    {/* Upload Mode Toggle */}
+                    <div className="flex gap-2 mb-4">
+                        <button
+                            type="button"
+                            onClick={() => setUploadMode('file')}
+                            className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${uploadMode === 'file'
+                                    ? 'bg-blue-600 text-white'
+                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                }`}
+                        >
+                            <Upload className="w-4 h-4" />
+                            Upload File
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => setUploadMode('url')}
+                            className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${uploadMode === 'url'
+                                    ? 'bg-blue-600 text-white'
+                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                }`}
+                        >
+                            <Link className="w-4 h-4" />
+                            Use URL
+                        </button>
+                    </div>
+
                     <form onSubmit={handleSubmit} className="space-y-4">
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
-                            <input
-                                type="url"
-                                required
-                                placeholder="https://example.com/image.jpg"
-                                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                                value={formData.image}
-                                onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                            />
-                        </div>
+                        {/* File Upload Mode */}
+                        {uploadMode === 'file' && (
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Cover Image</label>
+                                <div
+                                    onClick={() => fileInputRef.current?.click()}
+                                    className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center cursor-pointer hover:border-blue-500 transition-colors"
+                                >
+                                    {previewUrl ? (
+                                        <div className="space-y-2">
+                                            <img
+                                                src={previewUrl}
+                                                alt="Preview"
+                                                className="max-h-48 mx-auto rounded-lg object-cover"
+                                            />
+                                            <p className="text-sm text-gray-500">{selectedFile?.name}</p>
+                                            <p className="text-xs text-blue-600">Click to change</p>
+                                        </div>
+                                    ) : (
+                                        <div className="space-y-2">
+                                            <Upload className="w-10 h-10 mx-auto text-gray-400" />
+                                            <p className="text-gray-600">Click to upload a cover image</p>
+                                            <p className="text-xs text-gray-400">JPG, PNG, GIF up to 10MB</p>
+                                        </div>
+                                    )}
+                                </div>
+                                <input
+                                    ref={fileInputRef}
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleFileSelect}
+                                    className="hidden"
+                                />
+                            </div>
+                        )}
+
+                        {/* URL Mode */}
+                        {uploadMode === 'url' && (
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
+                                <input
+                                    type="url"
+                                    required={uploadMode === 'url'}
+                                    placeholder="https://example.com/image.jpg"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+                                    value={formData.image}
+                                    onChange={(e) => {
+                                        setFormData({ ...formData, image: e.target.value });
+                                        setPreviewUrl(e.target.value);
+                                    }}
+                                />
+                                {previewUrl && uploadMode === 'url' && (
+                                    <div className="mt-2">
+                                        <img
+                                            src={previewUrl}
+                                            alt="Preview"
+                                            className="max-h-32 rounded-lg object-cover"
+                                            onError={() => setPreviewUrl('')}
+                                        />
+                                    </div>
+                                )}
+                            </div>
+                        )}
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
@@ -159,7 +274,7 @@ export function ManageBlog() {
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">Read Time (Optional)</label>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Read Time</label>
                                 <input
                                     type="text"
                                     placeholder="e.g. 5 min read"
@@ -182,7 +297,7 @@ export function ManageBlog() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Content (Markdown supported, Optional)</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Content (Markdown supported)</label>
                             <textarea
                                 rows={10}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 font-mono text-sm"
@@ -201,11 +316,11 @@ export function ManageBlog() {
                             </button>
                             <button
                                 type="submit"
-                                disabled={isSaving}
+                                disabled={isSaving || (uploadMode === 'file' && !selectedFile && !editingId)}
                                 className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50 flex items-center gap-2"
                             >
                                 {isSaving && <Loader2 className="w-4 h-4 animate-spin" />}
-                                {editingId ? 'Update Post' : 'Publish Post'}
+                                {isUploading ? 'Uploading...' : editingId ? 'Update Post' : 'Publish Post'}
                             </button>
                         </div>
                     </form>
