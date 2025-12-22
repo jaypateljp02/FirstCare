@@ -95,12 +95,12 @@ export const pageSEO = {
     },
     contact: {
         title: 'Contact Us',
-        description: 'Contact First Care Pathology Lab Hinjawadi. Call +91 9049678380 for appointments, WhatsApp booking, and home sample collection. Visit our lab in Hinjawadi, Pune.',
+        description: 'Contact First Care Pathology Lab Hinjawadi. Call +91 9325000356 for appointments, WhatsApp booking, and home sample collection. Visit our lab in Hinjawadi, Pune.',
         keywords: 'First Care Lab contact, pathology lab phone number, home sample collection booking, lab address Hinjawadi',
     },
     homeCollection: {
         title: 'Free Home Sample Collection',
-        description: 'Book free home sample collection in Hinjawadi, Pune. Our trained phlebotomists visit your home. Available 7 AM to 7 PM. WhatsApp: +91 9049678380',
+        description: 'Book free home sample collection in Hinjawadi, Pune. Our trained phlebotomists visit your home. Available 7 AM to 7 PM. WhatsApp: +91 9325000356',
         keywords: 'home sample collection Pune, home blood test, phlebotomist home visit, free sample collection Hinjawadi',
     },
     offers: {

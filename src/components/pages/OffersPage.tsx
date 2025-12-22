@@ -94,7 +94,7 @@ export function OffersPage() {
 
                     {/* CTA Button */}
                     <a
-                      href="https://wa.me/919049678380"
+                      href="https://wa.me/919325000356"
                       target="_blank"
                       rel="noopener noreferrer"
                       className={`w-full flex items-center justify-center gap-2 px-6 py-3 ${colorClasses.badge} text-white rounded-lg hover:opacity-90 transition-opacity`}
@@ -136,13 +136,13 @@ export function OffersPage() {
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a
-              href="tel:+919049678380"
+              href="tel:+919325000356"
               className="px-8 py-3 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
             >
               Call Now
             </a>
             <a
-              href="https://wa.me/919049678380"
+              href="https://wa.me/919325000356"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"

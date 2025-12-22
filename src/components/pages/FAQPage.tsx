@@ -8,7 +8,7 @@ export function FAQPage() {
     {
       question: 'How do I book a test?',
       answer:
-        'You can book a test by calling us at +91 9049678380, messaging us on WhatsApp, or visiting our lab directly. For home sample collection, simply share your address and preferred time slot via WhatsApp, and we\'ll arrange a convenient pickup.',
+        'You can book a test by calling us at +91 9325000356, messaging us on WhatsApp, or visiting our lab directly. For home sample collection, simply share your address and preferred time slot via WhatsApp, and we\'ll arrange a convenient pickup.',
     },
     {
       question: 'Do you offer home sample collection?',
