@@ -42,9 +42,15 @@ export function ContactPage() {
                 <h3 className="text-gray-900 mb-2">Phone Number</h3>
                 <a
                   href="tel:+917875426669"
-                  className="text-blue-600 hover:text-blue-700"
+                  className="text-blue-600 hover:text-blue-700 block"
                 >
                   +91 78754 26669
+                </a>
+                <a
+                  href="tel:+918605111939"
+                  className="text-blue-600 hover:text-blue-700 block"
+                >
+                  +91 86051 11939
                 </a>
                 <p className="text-sm text-gray-600 mt-1">
                   Call us for immediate assistance
