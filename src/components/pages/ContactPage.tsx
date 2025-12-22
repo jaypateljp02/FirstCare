@@ -39,15 +39,13 @@ export function ContactPage() {
                 <Phone className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="text-gray-900 mb-2">Phone Numbers</h3>
-                <div className="flex flex-col gap-1">
-                  <a href="tel:+918605111939" className="text-blue-600 hover:text-blue-700">
-                    +91 86051 11939
-                  </a>
-                  <a href="tel:+917875426669" className="text-blue-600 hover:text-blue-700">
-                    +91 78754 26669
-                  </a>
-                </div>
+                <h3 className="text-gray-900 mb-2">Phone Number</h3>
+                <a
+                  href="tel:+917875426669"
+                  className="text-blue-600 hover:text-blue-700"
+                >
+                  +91 78754 26669
+                </a>
                 <p className="text-sm text-gray-600 mt-1">
                   Call us for immediate assistance
                 </p>
@@ -61,24 +59,14 @@ export function ContactPage() {
               </div>
               <div>
                 <h3 className="text-gray-900 mb-2">WhatsApp</h3>
-                <div className="flex flex-col gap-1">
-                  <a
-                    href="https://wa.me/918605111939"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-green-600 hover:text-green-700"
-                  >
-                    +91 86051 11939
-                  </a>
-                  <a
-                    href="https://wa.me/917875426669"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-green-600 hover:text-green-700"
-                  >
-                    +91 78754 26669
-                  </a>
-                </div>
+                <a
+                  href="https://wa.me/917875426669"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-green-600 hover:text-green-700"
+                >
+                  +91 78754 26669
+                </a>
                 <p className="text-sm text-gray-600 mt-1">
                   Quick booking and support
                 </p>
@@ -92,7 +80,10 @@ export function ContactPage() {
               </div>
               <div>
                 <h3 className="text-gray-900 mb-2">Email Address</h3>
-                <a href="mailto:info@firstcarepathology.com" className="text-blue-600 hover:text-blue-700">
+                <a
+                  href="mailto:info@firstcarepathology.com"
+                  className="text-blue-600 hover:text-blue-700"
+                >
                   info@firstcarepathology.com
                 </a>
                 <p className="text-sm text-gray-600 mt-1">
@@ -118,29 +109,13 @@ export function ContactPage() {
           </div>
 
           {/* Action Buttons */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16 max-w-4xl mx-auto text-center">
-            <a
-              href="tel:+918605111939"
-              className="flex flex-col items-center gap-2 p-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors"
-            >
-              <Phone className="w-6 h-6" />
-              <span className="text-sm">Call 8605111939</span>
-            </a>
+          <div className="grid grid-cols-3 gap-4 mb-16 max-w-2xl mx-auto">
             <a
               href="tel:+917875426669"
               className="flex flex-col items-center gap-2 p-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors"
             >
               <Phone className="w-6 h-6" />
-              <span className="text-sm">Call 7875426669</span>
-            </a>
-            <a
-              href="https://wa.me/918605111939"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-col items-center gap-2 p-4 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-colors"
-            >
-              <MessageCircle className="w-6 h-6" />
-              <span className="text-sm">WhatsApp 8605111939</span>
+              <span className="text-sm">Call Now</span>
             </a>
             <a
               href="https://wa.me/917875426669"
@@ -149,7 +124,16 @@ export function ContactPage() {
               className="flex flex-col items-center gap-2 p-4 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-colors"
             >
               <MessageCircle className="w-6 h-6" />
-              <span className="text-sm">WhatsApp 7875426669</span>
+              <span className="text-sm">WhatsApp</span>
+            </a>
+            <a
+              href={branches[0].mapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-2 p-4 bg-gray-700 text-white rounded-xl hover:bg-gray-800 transition-colors"
+            >
+              <Navigation className="w-6 h-6" />
+              <span className="text-sm">Directions</span>
             </a>
           </div>
 
@@ -192,33 +176,24 @@ export function ContactPage() {
             ))}
           </div>
         </div>
-      </section >
+      </section>
 
       {/* Emergency Contact */}
-      < section className="py-12 bg-red-600 text-white" >
+      <section className="py-12 bg-red-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="mb-2">Need Urgent Test?</h2>
           <p className="mb-6 text-red-100">
             For emergency test requests and urgent home sample collection
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href="tel:+918605111939"
-              className="inline-flex items-center gap-2 px-8 py-3 bg-white text-red-600 rounded-lg hover:bg-red-50 transition-colors"
-            >
-              <Phone className="w-5 h-5" />
-              Call 86051 11939
-            </a>
-            <a
-              href="tel:+917875426669"
-              className="inline-flex items-center gap-2 px-8 py-3 bg-white text-red-600 rounded-lg hover:bg-red-50 transition-colors"
-            >
-              <Phone className="w-5 h-5" />
-              Call 78754 26669
-            </a>
-          </div>
+          <a
+            href="tel:+917875426669"
+            className="inline-flex items-center gap-2 px-8 py-3 bg-white text-red-600 rounded-lg hover:bg-red-50 transition-colors"
+          >
+            <Phone className="w-5 h-5" />
+            Call Emergency Line
+          </a>
         </div>
-      </section >
-    </div >
+      </section>
+    </div>
   );
 }
