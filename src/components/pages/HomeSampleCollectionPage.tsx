@@ -150,7 +150,7 @@ export function HomeSampleCollectionPage() {
             Available 7 days a week. Book your convenient time slot now!
           </p>
           <a
-            href="https://wa.me/919049678380"
+            href="https://wa.me/917875426669"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-3 bg-white text-green-600 rounded-lg hover:bg-green-50 transition-colors"

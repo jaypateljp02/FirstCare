@@ -104,8 +104,8 @@ export function ServicesPage() {
             <button
               onClick={() => setViewMode('grid')}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${viewMode === 'grid'
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
             >
               <Grid3x3 className="w-4 h-4" />
@@ -115,8 +115,8 @@ export function ServicesPage() {
             <button
               onClick={() => setViewMode('folder')}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${viewMode === 'folder'
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
             >
               <FolderOpen className="w-4 h-4" />
@@ -258,13 +258,13 @@ export function ServicesPage() {
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a
-              href="tel:+919049678380"
+              href="tel:+917875426669"
               className="px-8 py-3 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
             >
               Call Now
             </a>
             <a
-              href="https://wa.me/919049678380"
+              href="https://wa.me/917875426669"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"

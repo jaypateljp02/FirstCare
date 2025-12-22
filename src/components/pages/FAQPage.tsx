@@ -28,7 +28,7 @@ export function FAQPage() {
     {
       question: 'How do I contact customer support?',
       answer:
-        'You can reach our customer support team via phone at +91 98765 43210, WhatsApp at the same number, or email us at info@medipathlabs.com. Our support is available Monday to Saturday from 7 AM to 9 PM and Sunday from 8 AM to 6 PM.',
+        'You can reach our customer support team via phone at +91 7875426669, WhatsApp at the same number, or email us at info@firstcarepathology.com. Our support is available Monday to Saturday from 7 AM to 9 PM and Sunday from 8 AM to 6 PM.',
     },
     {
       question: 'Are your reports accurate and reliable?',
@@ -123,13 +123,13 @@ export function FAQPage() {
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a
-              href="tel:+919049678380"
+              href="tel:+917875426669"
               className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
             >
               Call Us
             </a>
             <a
-              href="https://wa.me/919049678380"
+              href="https://wa.me/917875426669"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"

@@ -90,11 +90,10 @@ export function TestimonialsPage() {
               {[...Array(5)].map((_, i) => (
                 <Star
                   key={i}
-                  className={`w-8 h-8 ${
-                    i < Math.floor(averageRating)
+                  className={`w-8 h-8 ${i < Math.floor(averageRating)
                       ? 'fill-yellow-400 text-yellow-400'
                       : 'text-gray-300'
-                  }`}
+                    }`}
                 />
               ))}
             </div>
@@ -119,11 +118,10 @@ export function TestimonialsPage() {
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      className={`w-4 h-4 ${
-                        i < testimonial.rating
+                      className={`w-4 h-4 ${i < testimonial.rating
                           ? 'fill-yellow-400 text-yellow-400'
                           : 'text-gray-300'
-                      }`}
+                        }`}
                     />
                   ))}
                 </div>
@@ -151,7 +149,7 @@ export function TestimonialsPage() {
             Have you used our services? We'd love to hear from you!
           </p>
           <a
-            href="https://wa.me/919049678380"
+            href="https://wa.me/917875426669"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block px-8 py-3 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"

@@ -126,7 +126,7 @@ export function CertificationsPage() {
           <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
             Our laboratory is equipped with the latest automated analyzers from leading global manufacturers
           </p>
-          
+
           <div className="grid md:grid-cols-2 gap-12 items-center mb-12">
             <div className="relative h-96 rounded-2xl overflow-hidden shadow-xl">
               <ImageWithFallback
@@ -235,13 +235,13 @@ export function CertificationsPage() {
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a
-              href="tel:+919049678380"
+              href="tel:+917875426669"
               className="px-8 py-3 bg-white text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
             >
               Book Your Test
             </a>
             <a
-              href="https://wa.me/919049678380"
+              href="https://wa.me/917875426669"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
