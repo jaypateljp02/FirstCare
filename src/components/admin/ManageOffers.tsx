@@ -182,7 +182,24 @@ export function ManageOffers() {
                                     placeholder="e.g. ₹999"
                                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                                     value={formData.offerPrice}
-                                    onChange={(e) => setFormData({ ...formData, offerPrice: e.target.value })}
+                                    onChange={(e) => {
+                                        const newOfferPrice = e.target.value;
+                                        setFormData(prev => {
+                                            const newData = { ...prev, offerPrice: newOfferPrice };
+                                            // Calculate discount % if Original Price exists
+                                            // Trigger: User enters Offer Price
+                                            if (prev.originalPrice && newOfferPrice) {
+                                                const original = parseFloat(prev.originalPrice.replace(/[^0-9.]/g, ''));
+                                                const offer = parseFloat(newOfferPrice.replace(/[^0-9.]/g, ''));
+
+                                                if (original > 0 && offer >= 0 && original >= offer) {
+                                                    const discountPercent = Math.round(((original - offer) / original) * 100);
+                                                    newData.discount = `${discountPercent}% OFF`;
+                                                }
+                                            }
+                                            return newData;
+                                        });
+                                    }}
                                 />
                             </div>
                             <div>
@@ -193,7 +210,24 @@ export function ManageOffers() {
                                     placeholder="e.g. 60% OFF"
                                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                                     value={formData.discount}
-                                    onChange={(e) => setFormData({ ...formData, discount: e.target.value })}
+                                    onChange={(e) => {
+                                        const newDiscount = e.target.value;
+                                        setFormData(prev => {
+                                            const newData = { ...prev, discount: newDiscount };
+                                            // Calculate Offer Price if Original Price exists
+                                            // Trigger: User enters Discount %
+                                            if (prev.originalPrice && newDiscount) {
+                                                const original = parseFloat(prev.originalPrice.replace(/[^0-9.]/g, ''));
+                                                const discountVal = parseFloat(newDiscount.replace(/[^0-9.]/g, ''));
+
+                                                if (original > 0 && !isNaN(discountVal)) {
+                                                    const offer = original - (original * (discountVal / 100));
+                                                    newData.offerPrice = `₹${Math.round(offer).toLocaleString('en-IN')}`;
+                                                }
+                                            }
+                                            return newData;
+                                        });
+                                    }}
                                 />
                             </div>
                         </div>
