@@ -41,10 +41,10 @@ export function ContactPage() {
               <div>
                 <h3 className="text-gray-900 mb-2">Phone Number</h3>
                 <a
-                  href="tel:+919325000356"
+                  href="tel:+917875426669"
                   className="text-blue-600 hover:text-blue-700"
                 >
-                  +91 93250 00356
+                  +91 78754 26669
                 </a>
                 <p className="text-sm text-gray-600 mt-1">
                   Call us for immediate assistance
@@ -60,12 +60,12 @@ export function ContactPage() {
               <div>
                 <h3 className="text-gray-900 mb-2">WhatsApp</h3>
                 <a
-                  href="https://wa.me/919325000356"
+                  href="https://wa.me/917875426669"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-green-600 hover:text-green-700"
                 >
-                  +91 93250 00356
+                  +91 78754 26669
                 </a>
                 <p className="text-sm text-gray-600 mt-1">
                   Quick booking and support
@@ -111,14 +111,14 @@ export function ContactPage() {
           {/* Action Buttons */}
           <div className="grid grid-cols-3 gap-4 mb-16 max-w-2xl mx-auto">
             <a
-              href="tel:+919325000356"
+              href="tel:+917875426669"
               className="flex flex-col items-center gap-2 p-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors"
             >
               <Phone className="w-6 h-6" />
               <span className="text-sm">Call Now</span>
             </a>
             <a
-              href="https://wa.me/919325000356"
+              href="https://wa.me/917875426669"
               target="_blank"
               rel="noopener noreferrer"
               className="flex flex-col items-center gap-2 p-4 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-colors"
@@ -186,7 +186,7 @@ export function ContactPage() {
             For emergency test requests and urgent home sample collection
           </p>
           <a
-            href="tel:+919325000356"
+            href="tel:+917875426669"
             className="inline-flex items-center gap-2 px-8 py-3 bg-white text-red-600 rounded-lg hover:bg-red-50 transition-colors"
           >
             <Phone className="w-5 h-5" />

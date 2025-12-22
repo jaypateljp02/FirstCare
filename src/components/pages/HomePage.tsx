@@ -34,7 +34,7 @@ export function HomePage() {
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <a
-                    href="https://wa.me/919325000356"
+                    href="https://wa.me/917875426669"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
@@ -167,7 +167,7 @@ export function HomePage() {
                 </p>
               </div>
               <a
-                href="https://wa.me/919325000356"
+                href="https://wa.me/917875426669"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-8 py-3 bg-white text-green-600 rounded-lg hover:bg-green-50 transition-colors whitespace-nowrap"

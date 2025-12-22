@@ -96,14 +96,14 @@ export function Header() {
           {/* Quick Action Icons */}
           <div className="hidden md:flex items-center gap-3">
             <a
-              href="tel:+919325000356"
+              href="tel:+917875426669"
               className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
             >
               <Phone className="w-4 h-4" />
               <span>Call</span>
             </a>
             <a
-              href="https://wa.me/919325000356"
+              href="https://wa.me/917875426669"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
@@ -145,14 +145,14 @@ export function Header() {
               ))}
               <div className="flex gap-2 pt-2">
                 <a
-                  href="tel:+919325000356"
+                  href="tel:+917875426669"
                   className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg flex-1 justify-center"
                 >
                   <Phone className="w-4 h-4" />
                   <span>Call</span>
                 </a>
                 <a
-                  href="https://wa.me/919325000356"
+                  href="https://wa.me/917875426669"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg flex-1 justify-center"
