@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Instagram } from 'lucide-react';
 import logo from '../assets/9276aa0b56df4cc5bee08a3e395cee0e361be502.png';
 
 export function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
           {/* About Section */}
-          <div>
+          <div className="col-span-2 sm:col-span-2 md:col-span-1">
             <div className="flex items-center gap-3 mb-4">
               <img src={logo} alt="First Care Logo" className="h-10 brightness-0 invert" />
               <div>
@@ -120,7 +120,7 @@ export function Footer() {
             </ul>
             <div className="flex gap-3 mt-4">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/share/1H9RCLrJgR/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"
@@ -128,27 +128,19 @@ export function Footer() {
                 <Facebook className="w-4 h-4" />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/firstcarepathology"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors"
               >
                 <Instagram className="w-4 h-4" />
               </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-400 transition-colors"
-              >
-                <Twitter className="w-4 h-4" />
-              </a>
             </div>
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-          <p>&copy; 2025 First Care Pathology Laboratory. All rights reserved.</p>
+          <p>&copy; 2026 First Care Pathology Laboratory. All rights reserved.</p>
         </div>
       </div>
     </footer>

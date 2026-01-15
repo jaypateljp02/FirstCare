@@ -15,10 +15,10 @@ interface SEOProps {
 const defaultSEO = {
     siteName: 'First Care Pathology Lab',
     title: 'First Care Pathology Lab | Best Diagnostic Centre in Hinjawadi, Pune',
-    description: 'Leading diagnostic center in Hinjawadi, Pune offering 300+ tests. Free home sample collection. Same day reports. NABL standard reports. Call: +91 9049678380',
+    description: 'Leading diagnostic center in Hinjawadi, Pune offering 300+ tests. Free home sample collection. Same day reports. NABL standard reports. Call: +91 7875426669',
     keywords: 'pathology lab Hinjawadi, blood test Pune, diagnostic centre near me, home sample collection Pune, First Care Lab',
-    image: 'https://firstcarepathology.com/og-image.jpg',
-    url: 'https://firstcarepathology.com',
+    image: 'https://firstcarelab.in/og-image.jpg',
+    url: 'https://firstcarelab.in',
 };
 
 export function SEO({

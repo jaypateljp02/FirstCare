@@ -7,9 +7,8 @@ import {
   Award,
 } from "lucide-react";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
-import afrojImage from "../../assets/am.jpeg";
-import omkarImage from "../../assets/om.jpeg";
-import siddheshwarImage from "../../assets/s.jpeg";
+import afrojImage from "../../assets/afroj.jpg";
+import omkarImage from "../../assets/omkar.jpg";
 
 
 export function AboutPage() {
@@ -43,31 +42,16 @@ export function AboutPage() {
 
   const team = [
     {
-      name: "Dr. Afroj Mujawar",
+      name: "Afroj Mujawar",
       role: "Chief Pathologist",
-      qualification: "MD Pathology",
+      qualification: "PGDMLT",
       src: afrojImage,
-      photo: "am.jpeg",
-
     },
     {
-      name: "Dr. Omkar Bhand",
+      name: "Omkar Bhand",
       role: "Senior Pathologist",
-      qualification: "MD Pathology",
+      qualification: "PGDMLT",
       src: omkarImage,
-      photo: "om.jpeg",
-    },
-    {
-      name: "Mr. Siddheshwar Mane",
-      role: "Lab Manager",
-      qualification: "MSc Medical Technology",
-      src: siddheshwarImage,
-      photo: "s.jpeg",
-    },
-    {
-      name: "Mr. Jay Patel",
-      role: "Senior Technician",
-      qualification: "BSc MLT",
     },
   ];
 
@@ -109,7 +93,7 @@ export function AboutPage() {
             <div>
               <h2 className="text-gray-900 mb-4">Our Story</h2>
               <p className="text-gray-600 mb-4">
-                Established in 2010, First Care Labs began with a
+                Established in 2023, First Care Labs began with a
                 simple mission: to provide accurate and
                 affordable diagnostic services to the people of
                 Pune. What started as a small laboratory has now
@@ -117,8 +101,8 @@ export function AboutPage() {
                 centers in the region.
               </p>
               <p className="text-gray-600 mb-4">
-                Over the years, we have served more than 50,000
-                patients, conducting over 500,000 tests with
+                Over the years, we have served more than 20,000
+                patients, conducting over 200,000 tests with
                 unwavering commitment to quality and accuracy.
                 Our journey has been marked by continuous
                 investment in cutting-edge technology and the
@@ -205,18 +189,18 @@ export function AboutPage() {
             are dedicated to providing you with accurate results
             and exceptional care.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-2xl mx-auto">
             {team.map((member, index) => (
               <div
                 key={index}
                 className="bg-white rounded-2xl overflow-hidden shadow-sm"
               >
-                <div className="h-64 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
+                <div className="h-72 bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center overflow-hidden">
                   <ImageWithFallback
                     // @ts-ignore
                     src={member.src}
                     alt={member.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-top"
                   />
                 </div>
                 <div className="p-6">

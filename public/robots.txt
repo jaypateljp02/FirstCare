@@ -1,5 +1,5 @@
 # Robots.txt for First Care Pathology Lab
-# https://firstcarepathology.com
+# https://firstcarelab.in
 
 User-agent: *
 Allow: /
@@ -19,7 +19,7 @@ Disallow: /admin
 Disallow: /admin/
 
 # Sitemap location
-Sitemap: https://firstcarepathology.com/sitemap.xml
+Sitemap: https://firstcarelab.in/sitemap.xml
 
 # Crawl-delay (optional, for polite crawling)
 Crawl-delay: 1

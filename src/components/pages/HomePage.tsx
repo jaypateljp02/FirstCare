@@ -136,7 +136,7 @@ export function HomePage() {
               <div>
                 <h2 className="text-gray-900 mb-4">About First Care Pathology Laboratory</h2>
                 <p className="text-gray-600 mb-4">
-                  With over 15 years of experience in diagnostic services, First Care Pathology Laboratory has been
+                  With over 3 years of experience in diagnostic services, First Care Pathology Laboratory has been
                   serving Hinjawadi and surrounding areas with accurate, reliable, and affordable pathology tests. Our
                   state-of-the-art facility is equipped with the latest technology and staffed by
                   experienced pathologists and technicians.

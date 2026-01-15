@@ -10,13 +10,14 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
-        return localStorage.getItem('isAdmin') === 'true';
+        // Use sessionStorage so login expires when browser is closed
+        return sessionStorage.getItem('isAdmin') === 'true';
     });
 
     const login = (password: string) => {
         if (password === 'admin123') { // Hardcoded password for now
             setIsAuthenticated(true);
-            localStorage.setItem('isAdmin', 'true');
+            sessionStorage.setItem('isAdmin', 'true');
             return true;
         }
         return false;
@@ -24,7 +25,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const logout = () => {
         setIsAuthenticated(false);
-        localStorage.removeItem('isAdmin');
+        sessionStorage.removeItem('isAdmin');
     };
 
     return (

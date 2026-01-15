@@ -75,57 +75,7 @@ interface DataContextType {
 
 const DataContext = createContext<DataContextType | undefined>(undefined);
 
-// Default Data (used as fallback if Supabase is empty)
-const defaultOffers: Offer[] = [
-    {
-        id: '1',
-        iconName: 'Tag',
-        title: 'Full Body Checkup Package',
-        originalPrice: '₹2,499',
-        offerPrice: '₹999',
-        discount: '60% OFF',
-        description: 'Comprehensive health screening with 60+ parameters including CBC, Lipid Profile, Liver Function, Kidney Function, Thyroid, Diabetes Panel, and more.',
-        features: [
-            '60+ Parameters Covered',
-            'Free Home Sample Collection',
-            'Reports in 24-48 Hours',
-            'Valid till December 31, 2025',
-        ],
-        color: 'blue',
-    },
-    {
-        id: '2',
-        iconName: 'Percent',
-        title: 'Diabetes Care Panel',
-        originalPrice: '₹1,299',
-        offerPrice: '₹699',
-        discount: '46% OFF',
-        description: 'Complete diabetes screening and monitoring package with HbA1c, Fasting Sugar, PP Sugar, and related tests.',
-        features: [
-            'HbA1c + Fasting + PP Sugar',
-            'Lipid Profile Included',
-            'Same Day Reports',
-            'Valid till December 31, 2025',
-        ],
-        color: 'green',
-    },
-    {
-        id: '3',
-        iconName: 'Gift',
-        title: 'Senior Citizen Special',
-        originalPrice: 'Regular Price',
-        offerPrice: '20% OFF',
-        discount: 'SPECIAL DISCOUNT',
-        description: 'Exclusive discount for senior citizens (60+ years) on all individual tests and health packages.',
-        features: [
-            'Applicable on All Tests',
-            'Priority Home Collection',
-            'Free Doctor Consultation',
-            'Lifetime Benefit',
-        ],
-        color: 'purple',
-    },
-];
+import { defaultOffers } from './defaultOffersData';
 
 const defaultGalleryImages: GalleryImage[] = [
     {
@@ -243,12 +193,13 @@ function dbToServiceCategory(row: any): ServiceCategory {
 }
 
 export function DataProvider({ children }: { children: React.ReactNode }) {
-    const [offers, setOffers] = useState<Offer[]>([]);
-    const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
-    const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
-    const [services, setServices] = useState<Service[]>([]);
-    const [serviceCategories, setServiceCategories] = useState<ServiceCategory[]>([]);
-    const [loading, setLoading] = useState(true);
+    // Initialize with default data for instant loading
+    const [offers, setOffers] = useState<Offer[]>(defaultOffers);
+    const [galleryImages, setGalleryImages] = useState<GalleryImage[]>(defaultGalleryImages);
+    const [blogPosts, setBlogPosts] = useState<BlogPost[]>(defaultBlogPosts);
+    const [services, setServices] = useState<Service[]>(defaultServices);
+    const [serviceCategories, setServiceCategories] = useState<ServiceCategory[]>(defaultServiceCategories);
+    const [loading, setLoading] = useState(false); // Start as false since we have default data
     const [error, setError] = useState<string | null>(null);
 
     // Fetch all data from Supabase
@@ -299,6 +250,64 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         refreshData();
     }, [refreshData]);
+
+    // Supabase Realtime subscription for live updates
+    useEffect(() => {
+        // Subscribe to all changes on the offers table
+        const offersSubscription = supabase
+            .channel('offers-realtime')
+            .on('postgres_changes', { event: '*', schema: 'public', table: 'offers' }, () => {
+                console.log('Offers table changed, refreshing data...');
+                refreshData();
+            })
+            .subscribe();
+
+        // Subscribe to gallery_images changes
+        const gallerySubscription = supabase
+            .channel('gallery-realtime')
+            .on('postgres_changes', { event: '*', schema: 'public', table: 'gallery_images' }, () => {
+                console.log('Gallery table changed, refreshing data...');
+                refreshData();
+            })
+            .subscribe();
+
+        // Subscribe to blog_posts changes
+        const blogSubscription = supabase
+            .channel('blog-realtime')
+            .on('postgres_changes', { event: '*', schema: 'public', table: 'blog_posts' }, () => {
+                console.log('Blog table changed, refreshing data...');
+                refreshData();
+            })
+            .subscribe();
+
+        // Subscribe to services changes
+        const servicesSubscription = supabase
+            .channel('services-realtime')
+            .on('postgres_changes', { event: '*', schema: 'public', table: 'services' }, () => {
+                console.log('Services table changed, refreshing data...');
+                refreshData();
+            })
+            .subscribe();
+
+        // Subscribe to service_categories changes
+        const categoriesSubscription = supabase
+            .channel('categories-realtime')
+            .on('postgres_changes', { event: '*', schema: 'public', table: 'service_categories' }, () => {
+                console.log('Categories table changed, refreshing data...');
+                refreshData();
+            })
+            .subscribe();
+
+        // Cleanup subscriptions on unmount
+        return () => {
+            supabase.removeChannel(offersSubscription);
+            supabase.removeChannel(gallerySubscription);
+            supabase.removeChannel(blogSubscription);
+            supabase.removeChannel(servicesSubscription);
+            supabase.removeChannel(categoriesSubscription);
+        };
+    }, [refreshData]);
+
 
     // CRUD Operations for Offers
     const addOffer = async (offer: Omit<Offer, 'id'>) => {

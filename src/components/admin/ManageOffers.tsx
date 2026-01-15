@@ -279,37 +279,46 @@ export function ManageOffers() {
             <div className="grid grid-cols-1 gap-4">
                 {offers.map((offer) => {
                     const Icon = icons[offer.iconName] || Tag;
+                    const testCount = offer.features.filter(f => !f.toLowerCase().startsWith('sample:')).length;
                     return (
-                        <div key={offer.id} className="bg-white p-4 rounded-xl border border-gray-200 flex items-center justify-between">
-                            <div className="flex items-center gap-4">
-                                <div className={`w-10 h-10 rounded-lg flex items-center justify-center bg-${offer.color}-100 text-${offer.color}-600`}>
-                                    <Icon className="w-5 h-5" />
+                        <div key={offer.id} className="bg-white p-4 rounded-xl border border-gray-200">
+                            <div className="flex items-start justify-between">
+                                <div className="flex items-start gap-4 flex-1">
+                                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center bg-${offer.color}-100 text-${offer.color}-600 flex-shrink-0`}>
+                                        <Icon className="w-6 h-6" />
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                        <h3 className="font-semibold text-gray-900">{offer.title}</h3>
+                                        <p className="text-sm text-gray-500 mt-0.5 line-clamp-1">{offer.description}</p>
+                                        <div className="flex items-center gap-4 mt-2">
+                                            <span className="text-sm font-medium text-gray-900">{offer.offerPrice}</span>
+                                            <span className="text-xs text-gray-400 line-through">{offer.originalPrice}</span>
+                                            <span className="text-xs px-2 py-0.5 bg-green-100 text-green-700 rounded-full">{offer.discount}</span>
+                                            <span className="text-xs px-2 py-0.5 bg-blue-100 text-blue-700 rounded-full">{testCount} tests</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h3 className="font-semibold text-gray-900">{offer.title}</h3>
-                                    <p className="text-sm text-gray-500">{offer.offerPrice} <span className="line-through text-xs ml-1">{offer.originalPrice}</span></p>
+                                <div className="flex items-center gap-2 ml-4">
+                                    <button
+                                        onClick={() => handleEdit(offer)}
+                                        className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                                        title="Edit Offer"
+                                    >
+                                        <Edit2 className="w-5 h-5" />
+                                    </button>
+                                    <button
+                                        onClick={() => handleDelete(offer.id)}
+                                        disabled={deletingId === offer.id}
+                                        className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-50"
+                                        title="Delete Offer"
+                                    >
+                                        {deletingId === offer.id ? (
+                                            <Loader2 className="w-5 h-5 animate-spin" />
+                                        ) : (
+                                            <Trash2 className="w-5 h-5" />
+                                        )}
+                                    </button>
                                 </div>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <button
-                                    onClick={() => handleEdit(offer)}
-                                    className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                                    title="Edit Offer"
-                                >
-                                    <Edit2 className="w-5 h-5" />
-                                </button>
-                                <button
-                                    onClick={() => handleDelete(offer.id)}
-                                    disabled={deletingId === offer.id}
-                                    className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-50"
-                                    title="Delete Offer"
-                                >
-                                    {deletingId === offer.id ? (
-                                        <Loader2 className="w-5 h-5 animate-spin" />
-                                    ) : (
-                                        <Trash2 className="w-5 h-5" />
-                                    )}
-                                </button>
                             </div>
                         </div>
                     );
@@ -318,3 +327,4 @@ export function ManageOffers() {
         </div>
     );
 }
+
