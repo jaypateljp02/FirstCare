@@ -91,8 +91,8 @@ export function TestimonialsPage() {
                 <Star
                   key={i}
                   className={`w-8 h-8 ${i < Math.floor(averageRating)
-                      ? 'fill-yellow-400 text-yellow-400'
-                      : 'text-gray-300'
+                    ? 'fill-yellow-400 text-yellow-400'
+                    : 'text-gray-300'
                     }`}
                 />
               ))}
@@ -119,8 +119,8 @@ export function TestimonialsPage() {
                     <Star
                       key={i}
                       className={`w-4 h-4 ${i < testimonial.rating
-                          ? 'fill-yellow-400 text-yellow-400'
-                          : 'text-gray-300'
+                        ? 'fill-yellow-400 text-yellow-400'
+                        : 'text-gray-300'
                         }`}
                     />
                   ))}
@@ -164,11 +164,11 @@ export function TestimonialsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
             <div>
-              <div className="text-3xl text-blue-600 mb-2">50,000+</div>
+              <div className="text-3xl text-blue-600 mb-2">20,000+</div>
               <p className="text-gray-600">Happy Patients</p>
             </div>
             <div>
-              <div className="text-3xl text-blue-600 mb-2">500,000+</div>
+              <div className="text-3xl text-blue-600 mb-2">200,000+</div>
               <p className="text-gray-600">Tests Conducted</p>
             </div>
             <div>

@@ -78,6 +78,8 @@ function OfferDetailModal({ offer, onClose }: { offer: Offer; onClose: () => voi
           maxWidth: '600px',
           width: '100%',
           maxHeight: '90vh',
+          display: 'flex',
+          flexDirection: 'column',
           overflow: 'hidden',
           boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
         }}
@@ -106,7 +108,14 @@ function OfferDetailModal({ offer, onClose }: { offer: Offer; onClose: () => voi
         </div>
 
         {/* Modal Body - Scrollable */}
-        <div className="p-4 sm:p-5 overflow-y-auto" style={{ maxHeight: '50vh' }}>
+        <div
+          className="p-4 sm:p-5 custom-scrollbar"
+          style={{
+            flex: 1,
+            overflowY: 'auto',
+            minHeight: 0,
+          }}
+        >
           <p className="text-gray-600 mb-4 text-sm">{offer.description}</p>
 
           {sampleInfo.length > 0 && (
@@ -126,19 +135,19 @@ function OfferDetailModal({ offer, onClose }: { offer: Offer; onClose: () => voi
           )}
 
           <div>
-            <h4 className="font-semibold text-gray-900 mb-2 flex items-center gap-2 text-sm">
+            <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2 text-sm border-b pb-2">
               <span className={`inline-flex items-center justify-center w-5 h-5 ${colorClasses.badge} text-white text-xs rounded-full`}>
                 {tests.length}
               </span>
               Tests Included
             </h4>
-            <div className="space-y-1">
+            <div className="space-y-2">
               {tests.map((test, idx) => (
-                <div key={idx} className="flex items-start gap-2 p-1.5 bg-gray-50 rounded">
+                <div key={idx} className="flex items-start gap-2 p-2 bg-gray-50 rounded-lg border border-gray-100">
                   <svg className={`w-4 h-4 ${colorClasses.text} flex-shrink-0 mt-0.5`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-xs text-gray-700">{test}</span>
+                  <span className="text-xs text-gray-700 leading-tight">{test}</span>
                 </div>
               ))}
             </div>
@@ -432,31 +441,31 @@ export function OffersPage() {
       <section className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-center text-gray-900 mb-8">Why Choose Our Packages?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Tag className="w-8 h-8 text-white" />
+          <div className="flex overflow-x-auto pb-6 snap-x md:grid md:grid-cols-3 md:gap-6 md:pb-0 hide-scrollbar -mx-4 px-4 md:mx-0 md:px-0 gap-4">
+            <div className="text-center min-w-[280px] snap-center bg-white p-6 rounded-2xl shadow-sm border border-gray-100 md:bg-transparent md:p-0 md:shadow-none md:border-none">
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white shadow-lg md:shadow-none shadow-blue-200">
+                <Tag className="w-8 h-8" />
               </div>
-              <h3 className="text-gray-900 mb-2">Best Value</h3>
-              <p className="text-sm text-gray-600">
+              <h3 className="text-gray-900 mb-2 font-bold text-lg">Best Value</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
                 Comprehensive tests at up to 60% discount compared to individual test prices
               </p>
             </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Gift className="w-8 h-8 text-white" />
+            <div className="text-center min-w-[280px] snap-center bg-white p-6 rounded-2xl shadow-sm border border-gray-100 md:bg-transparent md:p-0 md:shadow-none md:border-none">
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white shadow-lg md:shadow-none shadow-blue-200">
+                <Gift className="w-8 h-8" />
               </div>
-              <h3 className="text-gray-900 mb-2">Complete Screening</h3>
-              <p className="text-sm text-gray-600">
+              <h3 className="text-gray-900 mb-2 font-bold text-lg">Complete Screening</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
                 Specially curated packages covering all essential health parameters
               </p>
             </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Percent className="w-8 h-8 text-white" />
+            <div className="text-center min-w-[280px] snap-center bg-white p-6 rounded-2xl shadow-sm border border-gray-100 md:bg-transparent md:p-0 md:shadow-none md:border-none">
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white shadow-lg md:shadow-none shadow-blue-200">
+                <Percent className="w-8 h-8" />
               </div>
-              <h3 className="text-gray-900 mb-2">Expert Guidance</h3>
-              <p className="text-sm text-gray-600">
+              <h3 className="text-gray-900 mb-2 font-bold text-lg">Expert Guidance</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
                 Free consultation to help you choose the right package for your needs
               </p>
             </div>

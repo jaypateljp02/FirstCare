@@ -22,9 +22,12 @@ import { ManageBlog } from './components/admin/ManageBlog';
 import { ManageServices } from './components/admin/ManageServices';
 import { ProtectedRoute } from './components/ProtectedRoute';
 
+import ScrollToTop from './components/ScrollToTop';
+
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="min-h-screen flex flex-col">
         {/* Only show Header/Footer on non-admin pages */}
         <Routes>

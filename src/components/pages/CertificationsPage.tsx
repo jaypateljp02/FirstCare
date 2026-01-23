@@ -10,13 +10,6 @@ export function CertificationsPage() {
       description:
         'Certified for Quality Management Systems, demonstrating our commitment to consistent delivery of quality diagnostic services and customer satisfaction.',
     },
-    {
-      icon: Award,
-      title: 'CAP Accreditation',
-      credential: 'College of American Pathologists',
-      description:
-        'Recognized by CAP for excellence in pathology and laboratory practices, following international standards for accuracy and reliability.',
-    },
   ];
 
   const equipment = [
@@ -214,13 +207,6 @@ export function CertificationsPage() {
               </div>
               <div className="text-gray-900">ISO Certificate</div>
               <p className="text-sm text-gray-600 mt-2">Quality Management System</p>
-            </div>
-            <div className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-2xl border-2 border-blue-200 text-center">
-              <div className="w-32 h-32 mx-auto mb-4 bg-white rounded-lg flex items-center justify-center border border-gray-200">
-                <Award className="w-20 h-20 text-blue-600" />
-              </div>
-              <div className="text-gray-900">CAP Certificate</div>
-              <p className="text-sm text-gray-600 mt-2">Laboratory Accreditation</p>
             </div>
           </div>
         </div>

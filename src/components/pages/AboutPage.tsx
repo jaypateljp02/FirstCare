@@ -43,13 +43,13 @@ export function AboutPage() {
   const team = [
     {
       name: "Afroj Mujawar",
-      role: "Chief Pathologist",
+      role: "Founder",
       qualification: "PGDMLT",
       src: afrojImage,
     },
     {
       name: "Omkar Bhand",
-      role: "Senior Pathologist",
+      role: "Founder",
       qualification: "PGDMLT",
       src: omkarImage,
     },

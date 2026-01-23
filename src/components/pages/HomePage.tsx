@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { MessageCircle, Droplet, Activity, Heart, Stethoscope, CheckCircle, Clock, Home, Zap, Star } from 'lucide-react';
+import { MessageCircle, Droplet, Activity, Heart, Stethoscope, CheckCircle, Clock, Home, Zap, Star, Dna, TestTube, Sun, Shield, Baby, HeartHandshake } from 'lucide-react';
 import { ImageWithFallback } from '../figma/ImageWithFallback';
 import { SEO, pageSEO } from '../SEO';
 export function HomePage() {
@@ -8,12 +8,17 @@ export function HomePage() {
     { icon: Activity, title: 'Thyroid Panel', description: 'T3, T4, TSH testing' },
     { icon: Heart, title: 'Diabetes Tests', description: 'HbA1c, fasting & PP sugar' },
     { icon: Stethoscope, title: 'Full Body Checkup', description: 'Comprehensive health screening' },
+    { icon: Dna, title: 'Hormonal Tests', description: 'Complete hormonal profile' },
+    { icon: TestTube, title: 'TB / Sputum Tests', description: 'Advanced TB screening & culture' },
+    { icon: Sun, title: 'Vitamin Profile', description: 'Vitamin B12, D3 & others' },
+    { icon: Shield, title: 'Cancer Markers', description: 'CA-125, PSA & other markers' },
   ];
 
   const features = [
     { icon: CheckCircle, title: 'Accurate Reports', description: 'Precise and reliable results' },
-    { icon: Activity, title: 'Trusted Laboratory', description: 'NABL standard reports' },
+    { icon: HeartHandshake, title: 'Trusted Laboratory', description: 'NABL standard reports' },
     { icon: Home, title: 'Home Collection', description: 'Free sample pickup service' },
+    { icon: Baby, title: 'Pediatric Expert', description: 'Specialized care for babies' },
     { icon: Zap, title: 'Fast Report Delivery', description: 'Same day reports available' },
   ];
 
@@ -92,17 +97,20 @@ export function HomePage() {
         </section>
 
         {/* Why Choose Us */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 bg-gray-50 border-y border-gray-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-center text-gray-900 mb-12">Why Choose Us</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <h2 className="text-center text-gray-900 mb-10">Why Choose Us</h2>
+            <div className="flex flex-nowrap lg:justify-center gap-6 overflow-x-auto pb-6 custom-scrollbar scroll-smooth">
               {features.map((feature, index) => (
-                <div key={index} className="text-center">
-                  <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div
+                  key={index}
+                  className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-sm border border-blue-50 transition-all hover:shadow-md hover:-translate-y-1 min-w-[260px] flex-shrink-0"
+                >
+                  <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mb-5 shadow-inner">
                     <feature.icon className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-gray-900 mb-2">{feature.title}</h3>
-                  <p className="text-sm text-gray-600">{feature.description}</p>
+                  <h3 className="text-gray-900 font-bold mb-2 text-lg">{feature.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{feature.description}</p>
                 </div>
               ))}
             </div>
