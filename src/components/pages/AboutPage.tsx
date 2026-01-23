@@ -5,6 +5,11 @@ import {
   Heart,
   Users,
   Award,
+  FileCheck,
+  Microscope,
+  Home,
+  Clock,
+  Smartphone,
 } from "lucide-react";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 import afrojImage from "../../assets/afroj.jpg";
@@ -56,12 +61,36 @@ export function AboutPage() {
   ];
 
   const benefits = [
-    "NABL Standard Reports",
-    "State-of-the-art Equipment",
-    "Free Home Sample Collection",
-    "Same Day Reports Available",
-    "Digital Report Delivery",
-    "Experienced Team of Pathologists",
+    {
+      icon: FileCheck,
+      title: "NABL Standards",
+      description: "Reports processed as per NABL guidelines for highest accuracy"
+    },
+    {
+      icon: Microscope,
+      title: "Latest Technology",
+      description: "Fully automated analyzers from world-leading manufacturers"
+    },
+    {
+      icon: Home,
+      title: "Home Collection",
+      description: "Free sample pickup from the comfort of your home"
+    },
+    {
+      icon: Clock,
+      title: "Fast Reports",
+      description: "Same day report delivery for most routine investigations"
+    },
+    {
+      icon: Smartphone,
+      title: "Smart Reports",
+      description: "Get your reports delivered instantly via WhatsApp & Email"
+    },
+    {
+      icon: Users,
+      title: "Expert Team",
+      description: "Qualified pathologists and technicians with years of experience"
+    }
   ];
 
   return (
@@ -226,28 +255,27 @@ export function AboutPage() {
           <h2 className="text-center text-gray-900 mb-12">
             Why Choose First Care Labs
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex overflow-x-auto pb-6 snap-x md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 no-scrollbar -mx-4 px-4 md:mx-0 md:px-0">
             {benefits.map((benefit, index) => (
               <div
                 key={index}
-                className="flex items-start gap-3 p-6 bg-gradient-to-br from-blue-50 to-white rounded-xl border border-blue-100"
+                className="group min-w-[280px] snap-center bg-white p-6 rounded-2xl shadow-sm hover:shadow-2xl border border-blue-100 transition-all duration-300 hover:-translate-y-2 flex-shrink-0 md:flex-shrink relative overflow-hidden"
               >
-                <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <svg
-                    className="w-4 h-4 text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
+                <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-blue-50 rounded-full opacity-50 group-hover:scale-150 transition-transform duration-500 ease-out" />
+
+                <div className="relative">
+                  <div className="w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center mb-5 shadow-lg shadow-blue-200 group-hover:scale-110 transition-transform duration-300">
+                    <benefit.icon className="w-7 h-7 text-white" />
+                  </div>
+
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-700 transition-colors">
+                    {benefit.title}
+                  </h3>
+
+                  <p className="text-sm text-gray-600 leading-relaxed group-hover:text-gray-700">
+                    {benefit.description}
+                  </p>
                 </div>
-                <span className="text-gray-700">{benefit}</span>
               </div>
             ))}
           </div>
