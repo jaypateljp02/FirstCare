@@ -100,11 +100,11 @@ export function HomePage() {
         <section className="py-16 bg-gray-50 border-y border-gray-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-center text-gray-900 mb-10">Why Choose Us</h2>
-            <div className="flex flex-nowrap lg:justify-center gap-6 overflow-x-auto pb-6 custom-scrollbar scroll-smooth">
+            <div className="flex flex-col md:flex-row md:flex-nowrap lg:justify-center gap-6 md:overflow-x-auto pb-6 custom-scrollbar scroll-smooth">
               {features.map((feature, index) => (
                 <div
                   key={index}
-                  className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-sm border border-blue-50 transition-all hover:shadow-md hover:-translate-y-1 min-w-[260px] flex-shrink-0"
+                  className="flex flex-col items-center text-center p-6 bg-white rounded-2xl shadow-sm border border-blue-50 transition-all hover:shadow-md hover:-translate-y-1 w-full md:w-auto md:min-w-[260px] md:flex-shrink-0"
                 >
                   <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mb-5 shadow-inner">
                     <feature.icon className="w-8 h-8 text-white" />
