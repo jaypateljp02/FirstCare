@@ -441,8 +441,8 @@ export function OffersPage() {
       <section className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-center text-gray-900 mb-8">Why Choose Our Packages?</h2>
-          <div className="flex overflow-x-auto pb-6 snap-x md:grid md:grid-cols-3 md:gap-6 md:pb-0 no-scrollbar -mx-4 px-4 md:mx-0 md:px-0 gap-4">
-            <div className="text-center min-w-[280px] snap-center bg-white p-6 rounded-2xl shadow-sm border border-gray-100 md:bg-transparent md:p-0 md:shadow-none md:border-none flex-shrink-0">
+          <div className="flex overflow-x-auto pb-6 snap-x md:grid md:grid-cols-3 md:gap-6 md:pb-0 hide-scrollbar -mx-4 px-4 md:mx-0 md:px-0 gap-4">
+            <div className="text-center min-w-[280px] snap-center bg-white p-6 rounded-2xl shadow-sm border border-gray-100 md:bg-transparent md:p-0 md:shadow-none md:border-none">
               <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white shadow-lg md:shadow-none shadow-blue-200">
                 <Tag className="w-8 h-8" />
               </div>
@@ -451,7 +451,7 @@ export function OffersPage() {
                 Comprehensive tests at up to 60% discount compared to individual test prices
               </p>
             </div>
-            <div className="text-center min-w-[280px] snap-center bg-white p-6 rounded-2xl shadow-sm border border-gray-100 md:bg-transparent md:p-0 md:shadow-none md:border-none flex-shrink-0">
+            <div className="text-center min-w-[280px] snap-center bg-white p-6 rounded-2xl shadow-sm border border-gray-100 md:bg-transparent md:p-0 md:shadow-none md:border-none">
               <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white shadow-lg md:shadow-none shadow-blue-200">
                 <Gift className="w-8 h-8" />
               </div>
@@ -460,7 +460,7 @@ export function OffersPage() {
                 Specially curated packages covering all essential health parameters
               </p>
             </div>
-            <div className="text-center min-w-[280px] snap-center bg-white p-6 rounded-2xl shadow-sm border border-gray-100 md:bg-transparent md:p-0 md:shadow-none md:border-none flex-shrink-0">
+            <div className="text-center min-w-[280px] snap-center bg-white p-6 rounded-2xl shadow-sm border border-gray-100 md:bg-transparent md:p-0 md:shadow-none md:border-none">
               <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white shadow-lg md:shadow-none shadow-blue-200">
                 <Percent className="w-8 h-8" />
               </div>

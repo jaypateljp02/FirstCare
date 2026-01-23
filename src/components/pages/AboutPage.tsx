@@ -226,11 +226,11 @@ export function AboutPage() {
           <h2 className="text-center text-gray-900 mb-12">
             Why Choose First Care Labs
           </h2>
-          <div className="flex overflow-x-auto pb-6 snap-x md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 no-scrollbar -mx-4 px-4 md:mx-0 md:px-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {benefits.map((benefit, index) => (
               <div
                 key={index}
-                className="min-w-[280px] snap-center flex items-start gap-3 p-6 bg-gradient-to-br from-blue-50 to-white rounded-xl border border-blue-100 flex-shrink-0 md:flex-shrink"
+                className="flex items-start gap-3 p-6 bg-gradient-to-br from-blue-50 to-white rounded-xl border border-blue-100"
               >
                 <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                   <svg
