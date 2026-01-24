@@ -28,7 +28,7 @@ export function FAQPage() {
     {
       question: 'How do I contact customer support?',
       answer:
-        'You can reach our customer support team via phone at +91 7875426669, WhatsApp at the same number, or email us at info@firstcarepathology.com. Our support is available Monday to Saturday from 7 AM to 9 PM and Sunday from 8 AM to 6 PM.',
+        'You can reach our customer support team via phone at +91 7875426669, WhatsApp at the same number, or email us at firstcarepathologylab@firstcarelab.in. Our support is available Monday to Saturday from 7 AM to 9 PM and Sunday from 8 AM to 6 PM.',
     },
     {
       question: 'Are your reports accurate and reliable?',
@@ -137,7 +137,7 @@ export function FAQPage() {
               WhatsApp Us
             </a>
             <a
-              href="mailto:info@firstcarepathology.com"
+              href="mailto:firstcarepathologylab@firstcarelab.in"
               className="px-8 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition-colors"
             >
               Email Us
