@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { Search, Clock, Droplet, Activity, Heart, FileText, TestTube, FlaskConical, Pill, FileCheck, FolderOpen, ChevronDown, ChevronUp, Grid3x3 } from 'lucide-react';
 import { useData } from '../../context/DataContext';
+import { SEO, pageSEO } from '../SEO';
 
 // Icon mapping
 const iconComponents: Record<string, any> = {
@@ -73,6 +74,7 @@ export function ServicesPage() {
 
   return (
     <div>
+      <SEO {...pageSEO.services} url="https://firstcarelab.in/services" />
       {/* Page Title */}
       <section className="bg-gradient-to-br from-blue-50 to-blue-100 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

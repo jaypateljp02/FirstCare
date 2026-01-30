@@ -10,6 +10,7 @@ import { ImageWithFallback } from "../figma/ImageWithFallback";
 import afrojImage from "../../assets/afroj.jpg";
 import omkarImage from "../../assets/omkar.jpg";
 import dromkarImage from "../../assets/dromkar.png";
+import { SEO, pageSEO } from "../SEO";
 
 
 export function AboutPage() {
@@ -73,6 +74,7 @@ export function AboutPage() {
 
   return (
     <div>
+      <SEO {...pageSEO.about} url="https://firstcarelab.in/about" />
       {/* Page Title */}
       <section className="bg-gradient-to-br from-blue-50 to-blue-100 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

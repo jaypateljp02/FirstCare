@@ -15,8 +15,8 @@ interface SEOProps {
 const defaultSEO = {
     siteName: 'First Care Pathology Lab',
     title: 'First Care Pathology Lab | Best Diagnostic Centre in Hinjawadi, Pune',
-    description: 'Leading diagnostic center in Hinjawadi, Pune offering 300+ tests. Free home sample collection. Same day reports. NABL standard reports. Call: +91 7875426669',
-    keywords: 'pathology lab Hinjawadi, blood test Pune, diagnostic centre near me, home sample collection Pune, First Care Lab',
+    description: 'Leading pathology lab in Hinjawadi Phase 1, 2 & 3. 300+ tests, Free Home Sample Collection near me. Best diagnostic centre for blood test, thyroid, diabetes, full body checkup in Pune. Call: +91 7875426669',
+    keywords: 'First Care Lab, pathology lab near me, blood test near me, best diagnostic centre Hinjawadi, pathology lab Hinjawadi Phase 3, home sample collection Pune, First Care Pathology Lab',
     image: 'https://firstcarelab.in/og-image.jpg',
     url: 'https://firstcarelab.in',
 };
@@ -79,48 +79,48 @@ export function SEO({
 // Page-specific SEO configurations
 export const pageSEO = {
     home: {
-        title: undefined, // Uses default
-        description: 'First Care Pathology Lab - Leading diagnostic center in Hinjawadi, Pune. Offering 300+ tests including blood tests, thyroid panel, diabetes tests, full body checkup. Free home sample collection. Same day reports.',
-        keywords: 'pathology lab Hinjawadi, blood test Pune, diagnostic centre near me, home sample collection Pune, CBC test, thyroid test, diabetes test, full body checkup Hinjawadi',
+        title: 'Best Pathology Lab in Hinjawadi', // Overrides default to be more specific
+        description: 'First Care Pathology Lab - Top rated diagnostic centre in Hinjawadi, Pune. Offering blood tests, full body checkups, thyroid, diabetes testing. Free home sample collection near you.',
+        keywords: 'pathology lab near me, diagnostic centre Hinjawadi, blood test near me, full body checkup Pune, First Care Lab Hinjawadi, Dr. Omkar Suresh Nage pathology',
     },
     services: {
         title: 'All Tests & Services',
-        description: 'Complete list of 300+ pathology tests available at First Care Lab Hinjawadi. Blood tests, hormone tests, diabetes screening, liver function, kidney function, thyroid panel, and more.',
-        keywords: 'pathology tests Pune, blood tests list, CBC test, lipid profile, LFT test, KFT test, thyroid test, diabetes test, full body checkup price',
+        description: '300+ Pathology services in Hinjawadi. CBC, Thyroid (T3 T4 TSH), Lipid Profile, Liver Function Test (LFT), Kidney Function Test (KFT), Vitamin D, B12. Accurate reports.',
+        keywords: 'blood test list, pathology services Pune, CBC test cost, thyroid test price Hinjawadi, diabetes test near me, vitamin b12 test',
     },
     about: {
-        title: 'About Us',
-        description: 'Learn about First Care Pathology Lab - Your trusted diagnostic partner in Hinjawadi, Pune since 2010. Expert pathologists, modern equipment, and commitment to accuracy.',
-        keywords: 'about First Care Lab, pathology lab history, diagnostic center Hinjawadi, expert pathologists Pune',
+        title: 'About First Care Lab',
+        description: 'Trusted by 20,000+ patients. First Care Pathology Lab is the most reliable diagnostic centre in Hinjawadi, led by Dr. Omkar Suresh Nage. committed to accuracy and hygiene.',
+        keywords: 'about First Care Lab, Dr. Omkar Suresh Nage, best pathologist Hinjawadi, diagnostic lab reviews Pune',
     },
     contact: {
-        title: 'Contact Us',
-        description: 'Contact First Care Pathology Lab Hinjawadi. Call +91 7875426669 for appointments, WhatsApp booking, and home sample collection. Visit our lab in Hinjawadi, Pune.',
-        keywords: 'First Care Lab contact, pathology lab phone number, home sample collection booking, lab address Hinjawadi',
+        title: 'Contact Us - Phone Number & Address',
+        description: 'Visit First Care Pathology Lab at Ganpati Hospital & Shlok Hospital Hinjawadi. Call +91 7875426669 for home collection. Best lab near Laxmi Chowk and Marunji Road.',
+        keywords: 'First Care Lab contact number, lab address Hinjawadi, pathology lab Marunji Road, diagnostic centre Laxmi Chowk',
     },
     homeCollection: {
         title: 'Free Home Sample Collection',
-        description: 'Book free home sample collection in Hinjawadi, Pune. Our trained phlebotomists visit your home. Available 7 AM to 7 PM. WhatsApp: +91 7875426669',
-        keywords: 'home sample collection Pune, home blood test, phlebotomist home visit, free sample collection Hinjawadi',
+        description: 'Book Free Home Blood Sample Collection in Hinjawadi, Wakad, Baner, Marunji. Safe, hygienic and on-time phlebotomist visit. Call +91 7875426669.',
+        keywords: 'home sample collection near me, blood test at home Pune, free sample pickup Hinjawadi, lab test at home',
     },
     offers: {
-        title: 'Special Offers & Health Packages',
-        description: 'Check out special offers and discounted health packages at First Care Lab. Full body checkup, cardiac profile, diabetes screening at best prices in Hinjawadi.',
-        keywords: 'health checkup offers Pune, discounted blood tests, health package deals, full body checkup price Hinjawadi',
+        title: 'Health Packages & Offers',
+        description: 'Best Health Checkup Packages in Hinjawadi. Full Body Checkup, Senior Citizen Package, Diabetes Profile. Up to 50% OFF. Free Report Consultation by Doctor.',
+        keywords: 'health checkup offers Pune, full body checkup near me, blood test offers Hinjawadi, senior citizen health package',
     },
     blog: {
         title: 'Health Blog',
-        description: 'Read health articles, tips, and information about pathology tests, preventive care, and wellness from First Care Pathology Lab experts.',
+        description: 'Read latest health tips, understanding blood test reports, and preventive healthcare advice from expert pathologists at First Care Lab.',
         keywords: 'health blog, pathology articles, blood test information, health tips, preventive care',
     },
     gallery: {
-        title: 'Lab Gallery',
-        description: 'Take a virtual tour of First Care Pathology Lab. See our modern facilities, state-of-the-art equipment, and professional team in Hinjawadi, Pune.',
-        keywords: 'pathology lab photos, diagnostic center images, lab equipment, First Care Lab gallery',
+        title: 'Lab Gallery & Facilities',
+        description: 'View photos of our modern pathology laboratory, state-of-the-art diagnostic equipment and patient care facilities in Hinjawadi.',
+        keywords: 'pathology lab photos, diagnostic center images, lab equipment, clean diagnostic centre',
     },
     faq: {
-        title: 'Frequently Asked Questions',
-        description: 'Find answers to common questions about pathology tests, home collection, report delivery, fasting requirements, and more at First Care Lab.',
-        keywords: 'pathology lab FAQ, blood test questions, home collection FAQ, report delivery time, fasting for blood test',
+        title: 'FAQ - Frequently Asked Questions',
+        description: 'Answers to your questions about test timings, fasting requirements, report delivery, and home collection booking at First Care Pathology Lab.',
+        keywords: 'blood test fasting rules, report delivery time, lab timings Hinjawadi',
     },
 };

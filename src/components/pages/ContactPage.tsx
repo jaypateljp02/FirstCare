@@ -1,4 +1,5 @@
 import { Phone, MessageCircle, Mail, Clock, MapPin, Navigation } from 'lucide-react';
+import { SEO, pageSEO } from '../SEO';
 
 export function ContactPage() {
   const branches = [
@@ -18,6 +19,7 @@ export function ContactPage() {
 
   return (
     <div>
+      <SEO {...pageSEO.contact} url="https://firstcarelab.in/contact" />
       {/* Page Title */}
       <section className="bg-gradient-to-br from-blue-50 to-blue-100 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

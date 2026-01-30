@@ -1,6 +1,7 @@
 import { Tag, Percent, Gift, MessageCircle, Search, FlaskConical, X } from 'lucide-react';
 import { useData, Offer } from '../../context/DataContext';
 import { useState, useEffect } from 'react';
+import { SEO, pageSEO } from '../SEO';
 
 const iconMap: Record<string, typeof Tag> = {
   Tag: Tag,
@@ -217,6 +218,7 @@ export function OffersPage() {
 
   return (
     <div>
+      <SEO {...pageSEO.offers} url="https://firstcarelab.in/offers" />
       {/* Modal */}
       {selectedOffer && (
         <OfferDetailModal offer={selectedOffer} onClose={() => setSelectedOffer(null)} />
