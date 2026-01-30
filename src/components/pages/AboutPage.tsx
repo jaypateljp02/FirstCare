@@ -9,6 +9,7 @@ import {
 import { ImageWithFallback } from "../figma/ImageWithFallback";
 import afrojImage from "../../assets/afroj.jpg";
 import omkarImage from "../../assets/omkar.jpg";
+import dromkarImage from "../../assets/dromkar.png";
 
 
 export function AboutPage() {
@@ -52,6 +53,12 @@ export function AboutPage() {
       role: "Founder",
       qualification: "PGDMLT",
       src: omkarImage,
+    },
+    {
+      name: "Dr. Omkar Suresh Nage",
+      role: "Consultant doctor",
+      qualification: "MBBS, FCM, Fellowship In Internal Medicine & Diabetes (UK)",
+      src: dromkarImage,
     },
   ];
 
@@ -189,7 +196,7 @@ export function AboutPage() {
             are dedicated to providing you with accurate results
             and exceptional care.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-2xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {team.map((member, index) => (
               <div
                 key={index}

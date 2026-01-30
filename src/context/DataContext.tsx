@@ -194,7 +194,10 @@ function dbToServiceCategory(row: any): ServiceCategory {
 
 export function DataProvider({ children }: { children: React.ReactNode }) {
     // Initialize with default data for instant loading
-    const [offers, setOffers] = useState<Offer[]>(defaultOffers);
+    const [offers, setOffers] = useState<Offer[]>(defaultOffers.map(offer => ({
+        ...offer,
+        features: [...offer.features, "Free Report Consultancy by Doctor"]
+    })));
     const [galleryImages, setGalleryImages] = useState<GalleryImage[]>(defaultGalleryImages);
     const [blogPosts, setBlogPosts] = useState<BlogPost[]>(defaultBlogPosts);
     const [services, setServices] = useState<Service[]>(defaultServices);
@@ -225,7 +228,17 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
             if (categoriesRes.error) throw categoriesRes.error;
 
             // Use fetched data or defaults if empty
-            setOffers(offersRes.data?.length ? offersRes.data.map(dbToOffer) : defaultOffers);
+            if (offersRes.data?.length) {
+                setOffers(offersRes.data.map(dbToOffer).map(offer => ({
+                    ...offer,
+                    features: [...offer.features, "Free Report Consultancy by Doctor"]
+                })));
+            } else {
+                setOffers(defaultOffers.map(offer => ({
+                    ...offer,
+                    features: [...offer.features, "Free Report Consultancy by Doctor"]
+                })));
+            }
             setGalleryImages(galleryRes.data?.length ? galleryRes.data.map(dbToGalleryImage) : defaultGalleryImages);
             setBlogPosts(blogRes.data?.length ? blogRes.data.map(dbToBlogPost) : defaultBlogPosts);
             setServices(servicesRes.data?.length ? servicesRes.data.map(dbToService) : defaultServices);
@@ -236,7 +249,10 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
             console.error('Supabase error, using defaults:', err);
             setError(err.message || 'Failed to load data');
             // Fallback to defaults on error
-            setOffers(defaultOffers);
+            setOffers(defaultOffers.map(offer => ({
+                ...offer,
+                features: [...offer.features, "Free Report Consultancy by Doctor"]
+            })));
             setGalleryImages(defaultGalleryImages);
             setBlogPosts(defaultBlogPosts);
             setServices(defaultServices);
