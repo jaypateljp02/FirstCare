@@ -1,0 +1,56 @@
+
+added 194 packages, and audited 195 packages in 6s
+
+12 packages are looking for funding
+  run `npm fund` for details
+
+5 vulnerabilities (3 moderate, 2 high)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues possible, run:
+  npm audit fix --force
+
+Some issues need review, and may require choosing
+a different dependency.
+
+Run `npm audit` for details.
+
+> First Care Pathology Lab@0.1.0 build
+> vite build
+
+vite v6.3.5 building for production...
+transforming...
+✓ 1756 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                                      8.58 kB │ gzip:  2.43 kB
+dist/assets/9276aa0b56df4cc5bee08a3e395cee0e361be502-B0LSfiQR.png   73.64 kB
+dist/assets/afroj-DLuQZO6f.jpg                                     111.03 kB
+dist/assets/omkar-DdcnttQS.jpg                                     120.06 kB
+dist/assets/index-VD-7MT_0.css                                      32.44 kB │ gzip:  6.06 kB
+dist/assets/ImageWithFallback-CbSkcawm.js                            0.91 kB │ gzip:  0.63 kB
+dist/assets/DashboardPage-Bp1R5yny.js                                1.38 kB │ gzip:  0.65 kB
+dist/assets/LoginPage-B_-EjU9V.js                                    1.91 kB │ gzip:  0.85 kB
+dist/assets/AdminLayout-DbW_8Q_P.js                                  2.29 kB │ gzip:  0.97 kB
+dist/assets/BlogPage-D_1m8Vth.js                                     3.47 kB │ gzip:  1.24 kB
+dist/assets/GalleryPage-CbE9Ayov.js                                  3.48 kB │ gzip:  1.18 kB
+dist/assets/BlogPostPage-Bd58M5uX.js                                 3.90 kB │ gzip:  1.44 kB
+dist/assets/TestimonialsPage-FVFL3syU.js                             5.66 kB │ gzip:  2.02 kB
+dist/assets/HomeSampleCollectionPage-DV-oYTbd.js                     5.69 kB │ gzip:  1.70 kB
+dist/assets/FAQPage-CxHUCPV3.js                                      6.76 kB │ gzip:  2.52 kB
+dist/assets/ServicesPage-z7Mimbm5.js                                 6.81 kB │ gzip:  2.11 kB
+dist/assets/AboutPage-C3fmtUgI.js                                    6.91 kB │ gzip:  2.30 kB
+dist/assets/ContactPage-GUspOZyb.js                                  7.06 kB │ gzip:  1.94 kB
+dist/assets/ManageGallery-BOd83S2G.js                                7.12 kB │ gzip:  2.20 kB
+dist/assets/ManageOffers-KM7-HQcB.js                                 8.30 kB │ gzip:  2.31 kB
+dist/assets/CertificationsPage-khMJIdxO.js                           8.37 kB │ gzip:  2.61 kB
+dist/assets/ManageBlog-C7E7SVp2.js                                   9.03 kB │ gzip:  2.50 kB
+dist/assets/HomePage-bnCRHyVQ.js                                     9.77 kB │ gzip:  3.04 kB
+dist/assets/ManageServices-BxhsJ8mb.js                              12.25 kB │ gzip:  2.67 kB
+dist/assets/OffersPage--AwVM5Gb.js                                  13.88 kB │ gzip:  4.15 kB
+dist/assets/ui-Wey94-OB.js                                          52.65 kB │ gzip: 15.83 kB
+dist/assets/vendor-COIN9PGK.js                                     175.72 kB │ gzip: 57.97 kB
+dist/assets/index-CHpTxHGS.js                                      325.80 kB │ gzip: 81.47 kB
+✓ built in 4.49s

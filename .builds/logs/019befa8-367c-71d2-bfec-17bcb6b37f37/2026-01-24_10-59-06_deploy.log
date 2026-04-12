@@ -1,0 +1,39 @@
+
+added 194 packages, and audited 195 packages in 9s
+
+12 packages are looking for funding
+  run `npm fund` for details
+
+5 vulnerabilities (3 moderate, 2 high)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues possible, run:
+  npm audit fix --force
+
+Some issues need review, and may require choosing
+a different dependency.
+
+Run `npm audit` for details.
+
+> First Care Pathology Lab@0.1.0 build
+> vite build
+
+vite v6.3.5 building for production...
+transforming...
+✓ 1754 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                                      8.43 kB │ gzip:   2.40 kB
+dist/assets/9276aa0b56df4cc5bee08a3e395cee0e361be502-B0LSfiQR.png   73.64 kB
+dist/assets/afroj-DLuQZO6f.jpg                                     111.03 kB
+dist/assets/omkar-DdcnttQS.jpg                                     120.06 kB
+dist/assets/index-VD-7MT_0.css                                      32.44 kB │ gzip:   6.06 kB
+dist/assets/index-7fDjcEJW.js                                      670.78 kB │ gzip: 176.62 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 5.18s
