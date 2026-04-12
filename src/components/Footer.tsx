@@ -104,8 +104,8 @@ export function Footer() {
               <li className="flex items-start gap-2">
                 <Mail className="w-4 h-4 mt-1 flex-shrink-0" />
                 <div>
-                  <a href="mailto:firstcarepathologylab@firstcarelab.in" className="hover:text-white transition-colors">
-                    firstcarepathologylab@firstcarelab.in
+                  <a href="mailto:info@firstcarelab.in" className="hover:text-white transition-colors">
+                    info@firstcarelab.in
                   </a>
                 </div>
               </li>

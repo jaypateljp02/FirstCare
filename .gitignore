@@ -5,7 +5,6 @@ package-lock.json
 # Build output
 build/
 dist/
-/assets/
 
 # Environment variables
 .env

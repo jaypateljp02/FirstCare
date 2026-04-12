@@ -40,10 +40,10 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3">
-            <img src={logo} alt="First Care Logo" className="h-10" />
+          <Link to="/" className="flex items-center gap-2 sm:gap-3">
+            <img src={logo} alt="First Care Logo" className="h-10 w-auto shrink-0" />
             <div>
-              <div className="text-blue-900">Pathology Laboratory</div>
+              <div className="text-blue-900 text-sm sm:text-base font-medium leading-tight">Pathology<br className="sm:hidden" /> Laboratory</div>
               <div className="text-xs text-gray-500"></div>
             </div>
           </Link>

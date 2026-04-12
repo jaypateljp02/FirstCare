@@ -89,10 +89,10 @@ export function ContactPage() {
               <div>
                 <h3 className="text-gray-900 mb-2">Email Address</h3>
                 <a
-                  href="mailto:firstcarepathologylab@firstcarelab.in"
+                  href="mailto:info@firstcarelab.in"
                   className="text-blue-600 hover:text-blue-700"
                 >
-                  firstcarepathologylab@firstcarelab.in
+                  info@firstcarelab.in
                 </a>
                 <p className="text-sm text-gray-600 mt-1">
                   Send us your queries
