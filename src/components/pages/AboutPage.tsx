@@ -7,9 +7,9 @@ import {
   Award,
 } from "lucide-react";
 import { ImageWithFallback } from "../figma/ImageWithFallback";
-const afrojImage = "/afroj.jpeg";
-const omkarImage = "/omkar.jpeg";
-const dromkarImage = "/dromkar.png";
+import afrojImage from "../../assets/afroj.jpg";
+import omkarImage from "../../assets/omkar.jpg";
+import dromkarImage from "../../assets/dromkar.png";
 import { SEO, pageSEO } from "../SEO";
 
 

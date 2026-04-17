@@ -8,7 +8,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-const logo = "/logo.png";
+import logo from "../assets/logo.png";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

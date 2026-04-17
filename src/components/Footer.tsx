@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Facebook, Instagram } from 'lucide-react';
-const logo = "/logo.png";
+import logo from '../assets/logo.png';
 
 export function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {/* About Section */}
-          <div className="col-span-2 sm:col-span-2 md:col-span-1">
+          <div className="sm:col-span-2 md:col-span-1">
             <div className="flex items-center gap-3 mb-4">
               <img src={logo} alt="First Care Logo" className="h-10 brightness-0 invert" />
               <div>
@@ -90,7 +90,7 @@ export function Footer() {
           </div>
 
           {/* Contact Info */}
-          <div>
+          <div className="sm:col-span-2 md:col-span-1">
             <h3 className="text-white mb-4">Contact Us</h3>
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2">
