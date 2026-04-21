@@ -4,7 +4,7 @@ package-lock.json
 
 # Build output
 build/
-dist/
+# dist/ is NOT ignored — needed for Hostinger static deployment
 
 # Environment variables
 .env

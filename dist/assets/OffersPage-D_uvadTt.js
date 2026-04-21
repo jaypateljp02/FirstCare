@@ -1,4 +1,4 @@
-import{j as e,O as S,a9 as j,aa as f,ab as p,a0 as w,M as N,X as L}from"./ui-Wey94-OB.js";import{u as O}from"./index-BkMYxHeu.js";import{a as g}from"./vendor-COIN9PGK.js";import{S as I,p as E}from"./SEO-kZJJ8-gw.js";const y={Tag:p,Percent:f,Gift:j};function v(t){const l=t.features.filter(i=>!i.toLowerCase().startsWith("sample:")),h=l.map((i,n)=>`  ${n+1}. ${i}`).join(`
+import{j as e,O as S,a9 as j,aa as f,ab as p,a0 as w,M as N,X as L}from"./ui-Wey94-OB.js";import{u as O}from"./index-DAeO9lKi.js";import{a as g}from"./vendor-COIN9PGK.js";import{S as I,p as E}from"./SEO-D4xOL9jz.js";const y={Tag:p,Percent:f,Gift:j};function v(t){const l=t.features.filter(i=>!i.toLowerCase().startsWith("sample:")),h=l.map((i,n)=>`  ${n+1}. ${i}`).join(`
 `),x=`Hi! I'm interested in booking the *${t.title}* package.
 
 📋 *Package Details:*
